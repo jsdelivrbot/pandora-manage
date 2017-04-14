@@ -1,0 +1,236 @@
+<div cg-busy="statistics.dummyPromise" class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-1x fa-tachometer"></i> Dashboard</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <br/>
+
+                    <!-- Inner panel -->
+                    <div class="col-md-4">
+
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-lg fa-area-chart"></i> Completion Cycles</h3>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <canvas tc-chartjs-doughnut chart-options="options" chart-data="data" chart-legend="legend"></canvas>
+
+                                <div tc-chartjs-legend chart-legend="legend"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="row">
+
+                            <!-- Inner panel -->
+                            <div class="col-md-6">
+
+                                <div class="panel panel-default">
+
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Estimates</h3>
+                                    </div>
+
+                                    <div class="panel-body">
+
+                                        <div class="row">
+
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <div class="row">
+                                                            <div class="col-xs-3">
+                                                                <i class="fa fa-calculator fa-4x"></i>
+                                                            </div>
+                                                            <div class="col-xs-9 text-right">
+                                                                <div class="huge">{{statistics.stats.printsErp}}</div>
+                                                                <div>Estimates Waiting</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <a href ui-sref="identify3D.prayers({pageNum:0})">
+                                      <div class="panel-footer">
+                                        <span class="pull-left">View Estimates</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                      </div>
+                                    </a> -->
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <div class="row">
+                                                            <div class="col-xs-3">
+                                                            </div>
+                                                            <div class="col-xs-9 text-right">
+                                                                <div class="huge">{{statistics.stats.printsErp24}}</div>
+                                                                <div>Estimates Over 24 Hours</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Inner panel -->
+                            <div class="col-md-6">
+
+                                <div class="panel panel-default">
+
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Order Summary</h3>
+                                    </div>
+
+                                    <div class="panel-body">
+
+                                        <div class="row">
+
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <div class="row">
+                                                            <div class="col-xs-3">
+                                                                <i class="fa fa-history fa-4x"></i>
+                                                            </div>
+                                                            <div class="col-xs-9 text-right">
+                                                                <div class="huge">{{statistics.stats.ordersFinished}}</div>
+                                                                <div>Completed Orders</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a href ui-sref="identify3D.orders({pageNum:1, keyword:'', createdAfter:0, createdBefore:0, prescriptionStatus: 'created'})">
+                                                        <div class="panel-footer">
+                                                            <span class="pull-left">View Current Orders</span>
+                                                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <div class="row">
+                                                            <div class="col-xs-3">
+                                                            </div>
+                                                            <div class="col-xs-9 text-right">
+                                                                <div class="huge">{{statistics.stats.ordersFinished7}}</div>
+                                                                <div>Completed This Week</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Inner panel -->
+                            <div class="col-md-6">
+
+                                <div class="panel panel-default">
+
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Print Jobs</h3>
+                                    </div>
+
+                                    <div class="panel-body">
+
+                                        <div class="row">
+
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <div class="row">
+                                                            <div class="col-xs-3">
+                                                                <i class="fa fa-print fa-4x"></i>
+                                                            </div>
+                                                            <div class="col-xs-9 text-right">
+                                                                <div class="huge">{{statistics.stats.readyPrints}}</div>
+                                                                <div>Current Print Jobs</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="panel-footer">
+                                                        <span class="pull-left">Critical Print Jobs</span>
+                                                        <span class="pull-right">{{statistics.stats.criticalPrints}}</span>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <!--
+                                                    <a href ui-sref="identify3D.prayers({pageNum:0})">
+                                                      <div class="panel-footer">
+                                                        <span class="pull-left">View Current Print Jobs</span>
+                                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                        <div class="clearfix"></div>
+                                                      </div>
+                                                    </a>
+                                                    <a href ui-sref="identify3D.prayers({pageNum:0})">
+                                                      <div class="panel-footer">
+                                                        <span class="pull-left">View Critical Prints</span>
+                                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                        <div class="clearfix"></div>
+                                                      </div>
+                                                    </a>
+                                                    -->
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

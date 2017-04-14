@@ -1,0 +1,88 @@
+<form cg-busy="{promise:deviceInfo.myPromise, message:''}" name="Lform" novalidate ng-submit="deviceInfo.submitForm(Lform)">
+
+    <div class="modal-header">
+        <h3 class="modal-title">Printer Information</h3>
+
+        <button style="position:absolute; right:20px; top:20px;" ui-sref="^" class="btn btn-md btn-primary">Done</button>
+
+    </div>
+
+    <div class="modal-body">
+
+        <div class="container-fluid">
+
+            <div class="page-header">
+                <h4>
+                  {{deviceInfo.device.name}}
+                  <span class="label label-info">{{deviceInfo.device.status}}</span>
+                </h4>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <img ng-src="{{deviceInfo.device.image}}" class="inline-inspiration-photo center-block">
+
+                </div>
+
+            </div>
+
+            <br/>
+            <br/>
+
+            <div class="page-header">
+                <h4><i class="fa fa-info"></i> Device Information</h4>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="bs-example" data-example-id="simple-table">
+                        <table class="table table-bordered">
+                            <tbody>
+
+                                <tr ng-repeat="(key, value) in deviceInfo.deviceDynamic.ManufacturingInfo" ng-show="!!value">
+                                    <th scope="row">{{key}}</th>
+                                    <td>
+                                        {{value}}
+                                    </td>
+                                </tr>
+
+                                <tr ng-if="deviceInfo.device.url && deviceInfo.device.url.length > 0">
+                                    <th scope="row">Console</th>
+                                    <td>
+                                        <a target="_blank" href="{{deviceInfo.device.url}}">{{deviceInfo.device.url}}</a>
+                                    </td>
+                                </tr>
+
+                                <tr ng-repeat="(key, value) in deviceInfo.deviceDynamic.ReproductionFeatures" ng-show="!!value && !deviceInfo.isArray(value)">
+                                    <th scope="row">{{key}}</th>
+
+                                    <td ng-if="!deviceInfo.isObject(value)">
+                                        {{value}}
+                                    </td>
+
+                                    <td ng-if="deviceInfo.isObject(value) && value.choice">
+                                        <span style="margin-right:2px;" ng-repeat="c in value.choice.choice" class="label label-default">
+                                          {{c}}
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" ui-sref="^" class="btn btn-md btn-primary">Done</button>
+    </div>
+
+</form>

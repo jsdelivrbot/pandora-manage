@@ -1,0 +1,36 @@
+.one {
+    opacity: 0;
+    @include animation-name(_ellipsis);
+    @include animation-duration(1.3s);
+    @include animation-delay(0.0s);
+    @include animation-iteration-count(infinite);
+}
+
+.two {
+    opacity: 0;
+    @include animation-name(_ellipsis);
+    @include animation-duration(1.3s);
+    @include animation-delay(0.2s);
+    @include animation-iteration-count(infinite);
+}
+
+.three {
+    opacity: 0;
+    @include animation-name(_ellipsis);
+    @include animation-duration(1.3s);
+    @include animation-delay(0.3s);
+    @include animation-iteration-count(infinite);
+
+}
+
+@include keyframes(_ellipsis) {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

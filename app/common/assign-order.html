@@ -1,0 +1,668 @@
+<form cg-busy="{promise:assignOrder.myPromise, message:''}" name="Lform" novalidate ng-submit="assignOrder.saveInspiration(Lform)">
+
+    <div class="modal-header">
+        <h3 class="modal-title">
+          Authorize Order
+          <span class="label label-primary">{{assignOrder.order.order_id}}</span>
+          <!-- <span class="label label-default">{{assignOrder.order.dsiid}}</span> -->
+        </h3>
+
+        <button style="position:absolute; right:20px; top:20px;" ui-sref="^" class="btn btn-md btn-primary">Cancel</button>
+
+    </div>
+
+    <div class="modal-body">
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+
+                    <div class="page-header">
+                        <h4><i class="fa fa-picture-o"></i> {{assignOrder.order.designName}}</h4>
+                        <br/>
+                        {{assignOrder.order.description}}
+                    </div>
+
+                    <div class="row">
+
+                        <div ng-show="assignOrder.imageEditor" class="col-md-12">
+
+                            <image-cropper image-url="{{assignOrder.order.imageUrl || 'media/product-placeholder.jpg'}}" width="500" height="400" show-controls="true" fit-on-init="true" center-on-init="true" action-labels="assignOrder.myButtonLabels" />
+
+                            <!-- <button type="button" href ng-click="assignOrder.imageEditor=false" class=" btn btn-sm btn-primary">Hide Image Editor</button> -->
+
+                        </div>
+
+                        <div ng-show="!assignOrder.imageEditor" class="col-md-12">
+
+                            <img ng-show="!assignOrder.imageEditor" ng-src="{{assignOrder.order.imageUrl || 'media/product-placeholder.jpg'}}" class="inline-inspiration-photo">
+
+                            <!-- <button type="button" href ng-click="assignOrder.imageEditor=true" class=" btn btn-sm btn-primary">Show Image Editor</button> -->
+
+                        </div>
+
+                    </div>
+
+                  <br/>
+                    <br/>
+  <!--
+                    <div class="page-header">
+                        <h4><i class="fa fa-info"></i> Design Information</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="bs-example" data-example-id="simple-table">
+                                <table class="table table-bordered">
+                                    <tbody>
+
+                                        <tr>
+                                            <th scope="row">Design Name</th>
+                                            <td>{{assignOrder.order.name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Description</th>
+                                            <td>{{assignOrder.order.description}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Version</th>
+                                            <td>{{assignOrder.order.version}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Creator Name</th>
+                                            <td>{{assignOrder.order.creator.name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Quantity Ordered</th>
+                                            <td>{{assignOrder.order.quantityOrdered ? assignOrder.order.quantityOrdered : '-'}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Quantity Printed</th>
+                                            <td>{{assignOrder.order.quantityPrinted ? assignOrder.order.quantityPrinted : '-'}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Print Material</th>
+                                            <td>{{assignOrder.order.material}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Expiration Date</th>
+                                            <td>{{assignOrder.order.expirationDate}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Accuracy</th>
+                                            <td>
+                                                <span style="margin-right:2px;" ng-repeat="accuracy in assignOrder.order.accuracy" class="label label-default">{{accuracy}}</span>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">File Format</th>
+                                            <td>{{assignOrder.order.fileFormat}}</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
+<!--
+                    <div class="page-header">
+                        <h4><i class="fa fa-print"></i> Required Printer</h4>
+                    </div>
+
+                    <div ng-if="assignOrder.deviceDefinitions && assignOrder.deviceDefinitions.length === 0" class="alert alert-warning" role="alert">
+                        <p>No device requirement provided.</p>
+                    </div>
+
+                    <div ng-if="assignOrder.deviceDefinitions && assignOrder.deviceDefinitions.length > 0" class="row">
+                        <div class="col-md-12">
+
+                            <div class="bs-example" data-example-id="simple-table">
+                                <table class="table table-bordered">
+                                    <tbody>
+
+                                        <tr ng-repeat="device in assignOrder.deviceDefinitions">
+                                            <th scope="row">{{device.manufacturer}}</th>
+                                            <td>
+                                              {{device.model}}
+                                              <span ng-if="device.machineType" class="label label-info">{{device.machineType}}</span>
+                                              <span ng-if="device.family" class="label label-info">{{device.family}}</span>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="page-header">
+                        <h4><i class="fa fa-list"></i> Order Information</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="bs-example" data-example-id="simple-table">
+                                <table class="table table-bordered">
+                                    <tbody>
+
+                                        <tr>
+                                            <th scope="row">Order #</th>
+                                            <td>{{assignOrder.order.orderNumber}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Invoice #</th>
+                                            <td>{{assignOrder.order.invoiceNumber}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Date Received</th>
+                                            <td>{{assignOrder.order.dateReceived}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Region ID</th>
+                                            <td>{{assignOrder.order.regionId}}</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
+
+<!--
+                    <div class="page-header">
+                        <h4><i class="fa fa-user"></i> Customer Information</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="bs-example" data-example-id="simple-table">
+                                <table class="table table-bordered">
+                                    <tbody>
+
+                                        <tr>
+                                            <th scope="row">Company</th>
+                                            <td>{{assignOrder.order.customerCompany}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Customer Name</th>
+                                            <td>{{assignOrder.order.customerName}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Email</th>
+                                            <td>{{assignOrder.order.customerEmail}}</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+
+
+                    <div class="page-header">
+                        <h4><i class="fa fa-lock"></i> Certificate</h4>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-md-12 ">
+
+                            <button type="button" ng-show="!assignOrder.isShowCertificate" href ng-click="assignOrder.isShowCertificate=true" class=" btn btn-md btn-primary">Show Certificate</button>
+                            <button type="button" ng-show="assignOrder.isShowCertificate" href ng-click="assignOrder.isShowCertificate=false" class=" btn btn-md btn-primary">Hide Certificate</button>
+                        </div>
+                    </div>
+
+
+                    <div class="row" ng-if="assignOrder.isShowCertificate">
+                        <div class="col-md-12">
+
+                            <br/>
+
+                            <div class="form-group">
+                                <textarea class="form-control" rows="24" id="comment">{{assignOrder.order.acert}}</textarea>
+                            </div>
+
+                        </div>
+                    </div> -->
+
+
+
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="page-header">
+                        <h4><i class="fa fa-th"></i> Order Information</h4>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="form-group required">
+                                <label for="exampleInputEmail1">Device*</label>
+
+                                <div class="btn-group input-group" dropdown>
+                                    <button type="button" class="btn btn-default dropdown-toggle" ng-class="{ 'btn-danger' : Lform.selectedPrinter.$invalid}" dropdown-toggle ng-disabled="false">
+                                        {{assignOrder.selectedPrinter ? assignOrder.selectedPrinter.name : 'Select Device' }} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li ng-repeat="printer in assignOrder.printers">
+                                            <a href ng-click="assignOrder.selectedPrinter=printer"><span class="label label-info">{{printer.status}}</span> {{printer.name}}</a>
+                                        </li>
+
+                                    </ul>
+                                    <input type="hidden" name="selectedPrinter" required ng-model="assignOrder.selectedPrinter">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="form-group" ng-class="{ 'has-error' : Lform.quantityAuthorized.$invalid}">
+                                <label for="exampleInputEmail1">Quantity</label>
+                                <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Quantity" name="quantityAuthorized" ng-model="assignOrder.orderForm.BusinessRules.quantityAuthorized">
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group" ng-class="{ 'has-error' : Lform.expirationDate.$invalid}">
+                                <label for="exampleInputEmail1">Expiration Date</label>
+
+                                <p class="input-group input-group-md">
+                                    <input ng-disabled="assignOrder.orderForm.BusinessRules.expirationDate" type="text" class="form-control" datepicker-popup="MM / dd / yyyy" datepicker-mode="year" ng-model="assignOrder.orderForm.BusinessRules.expirationDate" name="expirationDate" is-open="assignOrder.isDOBCalOpen" placeholder="Expiration Date" close-text="Close"
+                                    />
+                                    <span class="input-group-btn">
+                                      <button type="button" class="btn btn-default" ng-click="assignOrder.openDOBCal($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-10">
+
+                            <div class="form-group" ng-class="{ 'has-error' : Lform.authorizedUser.$invalid}">
+                                <label for="exampleInputEmail1">Authorized User</label>
+                                <input ng-disabled="assignOrder.orderForm.BusinessRules.authorizedUser" type="text" class="form-control" id="exampleInputEmail1" placeholder="Authorized User" name="authorizedUser" ng-model="assignOrder.orderForm.BusinessRules.authorizedUser">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!--  -->
+
+                    <span ng-repeat="(key, arr) in assignOrder.orderForm.DesignRules" ng-if="isArray(arr) && arr.length > 0">
+
+
+                      <div
+                       ng-show="key == 'laserSintering' || key == 'cnc' || key == 'fdm' || key == 'sla' || key == 'sls' || key == 'ebam'"
+                       class="well well-sm page-header">
+                        <h4>
+                          <span class="label label-default">{{arr.length}}</span> {{key | uppercase}}
+                        </h4>
+                      </div>
+
+
+                      <div ng-if="!arr || !isArray(arr) || arr.length < 1" class="alert alert-warning" role="alert">
+                        <p>NO OPTIONS FOUND FOR {{key | uppercase}}.</p>
+                      </div>
+
+
+                      <div
+                        ng-repeat="dynamicField in arr track by $index"
+                        ng-init="dynamicField._value = copy(dynamicField.value); dynamicField._fieldType = dynamicField._value.choice ? 'CHOICE' : (dynamicField._value.range ? 'RANGE' : 'VALUE')"
+                        class="row"
+                      >
+
+
+                        <!--
+                          CHOICE
+                        -->
+
+                        <div
+                          ng-if="isObject(dynamicField._value) && dynamicField._value.choice"
+                          class="col-md-12"
+                        >
+                            <div class="form-group" ng-class="{ 'has-error' : Lform.{{key+$index}}.$invalid}">
+                                <label for="exampleInputEmail1">
+                                    <!-- <span class="label label-xs label-default">{{$index+1}}</span>  -->
+                                   {{dynamicField.name}}{{dynamicField.isRequired ? "*" : ""}}
+                                </label>
+
+                                <div class="btn-group input-group" dropdown>
+                                    <button type="button" class="btn btn-default dropdown-toggle" ng-class="{ 'btn-danger' : Lform.{{key+$index}}.$invalid}" dropdown-toggle ng-required="dynamicField.isRequired" ng-disabled="!dynamicField.isEditable">
+                                        {{dynamicField.value.value || 'Select' }} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li ng-repeat="choice in dynamicField.value.choice.choice">
+                                            <a href ng-click="dynamicField.value.value=choice">{{choice}}</a>
+                                        </li>
+                                    </ul>
+                                    <input
+                                      type="hidden"
+                                      name="{{key+$index}}"
+                                      ng-required="dynamicField.isRequired"
+                                      ng-model="dynamicField.value.value"
+                                    >
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!--
+                          BOOLEAN
+                        -->
+
+
+
+<!--
+DEBUG:
+
+ <div  class="alert alert-warning" role="alert">
+    <p>{{dynamicField.name}} isRequired? {{dynamicField.isRequired}}</p>
+</div> -->
+
+                        <div
+                          ng-if="dynamicField.dataType === 'boolean'"
+                          class="col-md-10"
+                        >
+
+                            <div class="form-group" ng-class="{ 'has-error' : Lform.{{key+$index}}.$invalid}">
+                                <label for="exampleInputEmail1">
+                                    <!-- <span class="label label-xs label-default">{{$index+1}}</span>  -->
+                                    {{dynamicField.name}}{{dynamicField.isRequired ? "*" : ""}}
+                                </label>
+
+                                <div class="btn-group input-group" dropdown>
+                                    <button type="button" class="btn btn-default dropdown-toggle" ng-class="{ 'btn-danger' : Lform.{{key+$index}}.$invalid}" dropdown-toggle ng-required="dynamicField.isRequired" ng-disabled="!dynamicField.isEditable">
+                                        {{dynamicField.value.value === undefined ? 'Select' : (dynamicField.value.value === true ? 'YES' : 'NO') }} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href ng-click="dynamicField.value.value=true">YES</a>
+                                        </li>
+                                        <li>
+                                            <a href ng-click="dynamicField.value.value=false">NO</a>
+                                        </li>
+                                    </ul>
+                                    <input
+                                      type="hidden"
+                                      name="{{key+$index}}"
+                                      ng-required="dynamicField.isRequired"
+                                      ng-model="dynamicField.value.value"
+                                    >
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!--
+                          CONFIGURABLE
+                        -->
+
+                        <div
+                          ng-if="dynamicField.dataType !== 'boolean' && !dynamicField._value.choice"
+                          class="col-md-12"
+                        >
+
+                            <label for="exampleInputEmail1">
+                                <!-- <span class="label label-xs label-default">{{$index+1}}</span> -->
+                                {{dynamicField.name}}{{dynamicField.isRequired ? "*" : ""}}
+                            </label>
+
+                            <div class="row">
+
+                                <div
+
+                                  class="col-md-3"
+                                >
+                                    <div class="btn-group input-group" dropdown>
+                                        <button
+                                          type="button"
+                                          class="btn btn-default dropdown-toggle"
+                                          dropdown-toggle
+                                          ng-disabled="!dynamicField.isEditable"
+                                        >
+                                            {{dynamicField._fieldType}} <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href ng-click="dynamicField._fieldType='VALUE'; dynamicField.value.range=null; dynamicField.value.choice=null">VALUE</a>
+                                            </li>
+                                            <li ng-if="dynamicField.name !== 'Material' && dynamicField.name !== 'Accuracy'">
+                                                <a href ng-click="dynamicField._fieldType='RANGE'; dynamicField.value.value=null; dynamicField.value.choice=null">RANGE</a>
+                                            </li>
+                                            <!-- <li>
+                                                <a href ng-click="dynamicField._fieldType='CHOICE'; dynamicField.value.value=null; dynamicField.value.range=null">CHOICE</a>
+                                            </li> -->
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <!-- UNDEFINED RANGE -->
+                                <span
+                                  ng-if="dynamicField._fieldType === 'RANGE' && (!dynamicField._value.range.min || !dynamicField._value.range.max)"
+                                >
+                                  <div class="col-md-4">
+                                      <div class="form-group" ng-class="{ 'has-error' : Lform.{{key+$index+'low'}}.$invalid}">
+                                          <label for="exampleInputEmail1">
+                                              Low{{dynamicField.isRequired ? "*" : ""}}
+                                              <span
+                                                ng-show="dynamicField._value.range.min"
+                                                class="badge"
+                                              >min {{dynamicField._value.range.min}}</span>
+                                          </label>
+                                          <input
+                                            type="number"
+                                            class="form-control"
+                                            id="exampleInputEmail1"
+                                            placeholder="Low"
+                                            name="{{key+$index+'low'}}"
+                                            ng-required="dynamicField.isRequired"
+                                            ng-model="dynamicField.value.range.min"
+                                            ng-disabled="!dynamicField.isEditable"
+                                          >
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <div class="form-group" ng-class="{ 'has-error' : Lform.{{key+$index+'high'}}.$invalid}">
+                                          <label for="exampleInputEmail1">
+                                              High{{dynamicField.isRequired ? "*" : ""}}
+                                              <span
+                                                ng-show="dynamicField._value.range.max"
+                                                class="badge"
+                                              >max {{dynamicField._value.range.max}}</span>
+                                          </label>
+                                          <input
+                                            type="number"
+                                            class="form-control"
+                                            id="exampleInputEmail1"
+                                            placeholder="High"
+                                            name="{{key+$index+'high'}}"
+                                            ng-required="dynamicField.isRequired"
+                                            ng-model="dynamicField.value.range.max"
+                                            ng-disabled="!dynamicField.isEditable"
+                                          >
+                                      </div>
+                                  </div>
+                                </span>
+                                <!-- PREDEFINED RANGE -->
+
+                                <span
+                                  ng-if="dynamicField._fieldType === 'RANGE' && dynamicField._value.range.min && dynamicField._value.range.max"
+                                >
+
+                                  <div class="col-md-9">
+                                      <rzslider
+                                        rz-slider-model="dynamicField.value.range.min"
+                                        rz-slider-high="dynamicField.value.range.max"
+                                        rz-slider-options="assignOrder.createSliderOptions(dynamicField, dynamicField._value.range.min, dynamicField._value.range.max)"
+                                        >
+                                      </rzslider>
+
+                                  </div>
+
+                                </span>
+
+                                <!-- UNDEFINED VALUE -->
+
+                                <span
+                                  ng-if="dynamicField._fieldType === 'VALUE' && (!dynamicField._value.value || dynamicField.dataType === 'string')"
+                                >
+
+                                  <div class="col-md-4">
+                                      <div class="form-group" ng-class="{ 'has-error' : Lform.{{key+$index}}.$invalid}">
+                                          <label for="exampleInputEmail1">
+                                              Value{{dynamicField.isRequired ? "*" : ""}}
+                                          </label>
+                                          <input
+                                            ng-if="dynamicField.dataType !== 'integer'"
+                                            type="text"
+                                            class="form-control"
+                                            id="exampleInputEmail1"
+                                            placeholder="Value"
+                                            name="{{key+$index}}"
+                                            ng-required="dynamicField.isRequired"
+                                            ng-model="dynamicField.value.value"
+                                            ng-disabled="!dynamicField.isEditable"
+                                          >
+                                          <input
+                                            ng-if="dynamicField.dataType === 'integer'"
+                                            type="number"
+                                            class="form-control"
+                                            id="exampleInputEmail1"
+                                            placeholder="Value"
+                                            name="{{key+$index}}"
+                                            ng-required="dynamicField.isRequired"
+                                            ng-model="dynamicField.value.value"
+                                            ng-disabled="!dynamicField.isEditable"
+                                          >
+                                      </div>
+                                  </div>
+                                </span>
+
+                                <!-- PREDEFINED VALUE (range) -->
+                                <span
+                                  ng-if="dynamicField.dataType !== 'string' && dynamicField.value.$range && dynamicField._fieldType === 'VALUE' && dynamicField._value.value"
+                                >
+                                  <div class="col-md-9">
+
+                                      <rzslider
+                                        rz-slider-model="dynamicField.value.value"
+                                        rz-slider-options="assignOrder.createSliderOptions(dynamicField, dynamicField.value.$range.min, dynamicField.value.$range.max)"
+                                        >
+                                      </rzslider>
+
+                                  </div>
+                                </span>
+
+                                <!-- PREDEFINED VALUE (single value) -->
+                                <span
+                                  ng-if="dynamicField.dataType !== 'string' && !dynamicField.value.$range && dynamicField._fieldType === 'VALUE' && dynamicField._value.value"
+                                >
+                                <div class="col-md-4">
+                                    <div class="form-group" ng-class="{ 'has-error' : Lform.{{key+$index}}.$invalid}">
+                                        <label for="exampleInputEmail1">
+                                            Value{{dynamicField.isRequired ? "*" : ""}}
+                                        </label>
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          id="exampleInputEmail1"
+                                          placeholder="Value"
+                                          name="{{key+$index}}"
+                                          ng-required="dynamicField.isRequired"
+                                          ng-model="dynamicField.value.value"
+                                          ng-disabled="!dynamicField.isEditable"
+                                        >
+                                    </div>
+                                </div>
+                                </span>
+
+
+                                <!-- CHOICE -->
+                                <div ng-if="dynamicField._fieldType === 'CHOICE'" class="col-md-4">
+                                    <div class="form-group" ng-class="{ 'has-error' : Lform.{{key+$index}}.$invalid}">
+                                        <label for="exampleInputEmail1">
+                                            Choice{{dynamicField.isRequired ? "*" : ""}}
+                                        </label>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+<!--
+<div
+  class="col-md-12"
+>
+
+  <div  class="alert alert-warning" role="alert">
+     <pre>{{dynamicField.name}} {{assignOrder.stringify(dynamicField,null,"   ")}}</pre>
+ </div>
+
+</div> -->
+
+
+                      </div>
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <!-- <button class="btn btn-md btn-danger" type="button" ng-click="assignOrder.cancelJob(Lform)">Cancel</button> -->
+        <!-- <button class="btn btn-md btn-default" type="button" ng-click="assignOrder.downloadJob(Lform)">Local Download</button> -->
+        <button class="btn btn-md btn-success" type="button" ng-click="assignOrder.printJob(Lform)">Authorize</button>
+    </div>
+
+</form>

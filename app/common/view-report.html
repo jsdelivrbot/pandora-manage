@@ -1,0 +1,110 @@
+<form cg-busy="{promise:viewReport.myPromise, message:''}" name="Lform" novalidate ng-submit="viewReport.submitForm(Lform)">
+
+    <div class="modal-header">
+        <h3 class="modal-title">ID3 Trace <span class="badge">{{viewReport.orderData.order_id}}</span></h3>
+
+        <button style="position:absolute; right:20px; top:20px;" ui-sref="^" class="btn btn-md btn-primary">Done</button>
+
+    </div>
+
+    <div class="modal-body">
+
+        <div class="container-fluid">
+
+          <div class="row">
+              <div class="col-md-6">
+
+                  <div class="bs-example" data-example-id="simple-table">
+
+                      <table class="table table-bordered">
+                          <tbody>
+                              <tr>
+                                 <td>Order #</td>
+                                 <td>{{viewReport.orderData.order_id}}</td>
+                              </tr>
+
+                              <tr>
+                                 <td>AUTHORIZATION #</td>
+                                 <td>{{viewReport.orderData.authorization_id}}</td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="page-header">
+              <h4><i class="fa fa-info"></i> Manufacturing Parameters</h4>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+
+                  <div class="bs-example" data-example-id="simple-table">
+
+                    <!-- <div ng-if="!viewReport.reportData.reports || viewReport.reportData.reports.length < 1" class="alert alert-danger" role="alert">
+                        <p>No trace data found.</p>
+                    </div> -->
+
+                      <table class="table table-bordered table-striped">
+                          <thead>
+                             <tr>
+                                 <th>Manufacturer</th>
+                                 <th>Model</th>
+                             </tr>
+                         </thead>
+                          <tbody>
+                              <tr>
+                                 <td>{{viewReport.orderData.manufacturingParameters.machineManufacturer}}</td>
+                                 <td>{{viewReport.orderData.manufacturingParameters.machineModel}}</td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+
+          <div class="page-header">
+              <h4><i class="fa fa-info"></i> Licensing Parameters</h4>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+
+                  <div class="bs-example" data-example-id="simple-table">
+
+                    <div class="alert alert-danger" role="alert">
+                        <p>No licensing parameters found.</p>
+                    </div>
+
+                      <!-- <table class="table table-bordered table-striped">
+                          <thead>
+                             <tr>
+                                 <th>Manufacturer</th>
+                                 <th>Model</th>
+                             </tr>
+                         </thead>
+                          <tbody>
+                              <tr>
+                                 <td>{{viewReport.orderData.manufacturingParameters.machineManufacturer}}</td>
+                                 <td>{{viewReport.orderData.manufacturingParameters.machineModel}}</td>
+                              </tr>
+
+                          </tbody>
+                      </table> -->
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" ui-sref="^" class="btn btn-md btn-primary">Done</button>
+    </div>
+
+</form>

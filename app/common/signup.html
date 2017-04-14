@@ -1,0 +1,248 @@
+<div cg-busy="{promise: signup.dummyPromise, message:''}">
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-lg-offset-3 col-lg-6">
+
+        <div class="panel panel-default">
+          <!-- <div class="">
+            <img class="logo_login" src="media/branding/logo.png">
+          </div> -->
+
+          <div class="panel-heading">
+              <h3 class="login-heading">
+                <span class="badge">Pandora</span>
+                <br/>
+                <br/>
+                Manage
+              </h3>
+              <br/>
+              <h4 class="login-heading">Provide Account Information</h4>
+          </div>
+
+          <div class="panel-body">
+            <form novalidate name="lform" ng-submit="signup.login(lform)">
+
+              <div ng-if="signup.loginError" class="alert alert-danger" role="alert">
+                <p>{{signup.loginError}}</a>
+                </p>
+              </div>
+
+
+              <div class="row">
+                <div class="col-lg-6">
+
+                  <fieldset>
+                    <div class="form-group" ng-class="{ 'has-error' : lform.firstName.$invalid}">
+                      <label for="firstName">First Name*</label>
+                      <input autofocus ng-model="signup.loginForm.firstName" required name="firstName" type="text" class="form-control input-md" placeholder="First Name">
+                      <br/>
+                      <div ng-show="lform.firstName.$dirty && lform.firstName.$invalid" class="alert alert-danger" role="alert">
+                        <p ng-if="lform.firstName.$error.required">Enter your first name.</p>
+                      </div>
+
+                    </div>
+
+                  </fieldset>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                  <fieldset>
+
+                    <div class="form-group" ng-class="{ 'has-error' : lform.lastName.$invalid}">
+                      <label for="lastName">Last Name*</label>
+                      <input ng-model="signup.loginForm.lastName" required name="lastName" type="text" class="form-control input-md" placeholder="Last Name">
+                      <br/>
+                      <div ng-show="lform.lastName.$dirty && lform.lastName.$invalid" class="alert alert-danger" role="alert">
+                        <p ng-if="lform.lastName.$error.required">Enter your last name.</p>
+                      </div>
+                    </div>
+
+                  </fieldset>
+
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+
+                  <fieldset>
+                    <div class="form-group" ng-class="{ 'has-error' : lform.company.$invalid}">
+                      <label for="company">Company*</label>
+                      <input ng-model="signup.loginForm.company" required name="company" type="text" class="form-control input-md" placeholder="Company">
+                      <br/>
+                      <div ng-show="lform.company.$dirty && lform.company.$invalid" class="alert alert-danger" role="alert">
+                        <p ng-if="lform.company.$error.required">Enter company name.</p>
+                      </div>
+                    </div>
+
+                  </fieldset>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                  <fieldset>
+
+                    <div class="form-group" ng-class="{ 'has-error' : lform.email.$invalid}">
+                      <label for="email">Email*</label>
+                      <input ng-model="signup.loginForm.email" required name="email" type="email" class="form-control input-md" placeholder="Email">
+                      <br/>
+                      <div ng-show="lform.email.$dirty && lform.email.$invalid" class="alert alert-danger" role="alert">
+                        <p ng-if="lform.email.$error.required">Enter email.</p>
+                        <p ng-if="lform.email.$error.email">Invalid email.</p>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                </div>
+
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-lg-5">
+
+                  <fieldset>
+                    <div class="form-group" ng-class="{ 'has-error' : lform.address.$invalid}">
+                      <label for="address">Address*</label>
+                      <input ng-model="signup.loginForm.address" required name="address" type="text" class="form-control input-md" placeholder="Address">
+                      <br/>
+                      <div ng-show="lform.address.$dirty && lform.address.$invalid" class="alert alert-danger" role="alert">
+                        <p ng-if="lform.address.$error.required">Enter address.</p>
+                      </div>
+                    </div>
+
+                  </fieldset>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                  <fieldset>
+
+                    <div class="form-group" ng-class="{ 'has-error' : lform.city.$invalid}">
+                      <label for="city">City*</label>
+                      <input ng-model="signup.loginForm.city" required name="city" type="text" class="form-control input-md" placeholder="City">
+                      <br/>
+                      <div ng-show="lform.city.$dirty && lform.city.$invalid" class="alert alert-danger" role="alert">
+                        <p ng-if="lform.city.$error.required">Enter city.</p>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                </div>
+
+                <div class="col-lg-2">
+
+                  <fieldset>
+
+                    <div class="form-group" ng-class="{ 'has-error' : lform.state.$invalid}">
+                      <label for="state">State*</label>
+                      <input ng-model="signup.loginForm.state" required name="state" type="text" class="form-control input-md" placeholder="State">
+                      <br/>
+                      <div ng-show="lform.state.$dirty && lform.state.$invalid" class="alert alert-danger" role="alert">
+                        <p ng-if="lform.state.$error.required">Enter state.</p>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                </div>
+
+                <div class="col-lg-2">
+
+                  <fieldset>
+
+                    <div class="form-group" ng-class="{ 'has-error' : lform.zip.$invalid}">
+                      <label for="zip">Zip*</label>
+                      <input ng-model="signup.loginForm.zip" required name="zip" type="text" class="form-control input-md" placeholder="Zip">
+                      <br/>
+                      <div ng-show="lform.zip.$dirty && lform.zip.$invalid" class="alert alert-danger" role="alert">
+                        <p ng-if="lform.zip.$error.required">Enter zip.</p>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                </div>
+
+              </div>
+
+              <fieldset>
+                <div class="form-group" ng-class="{ 'has-error' : lform.user.$invalid}">
+                  <label for="user">Username*</label>
+
+                  <div class="input-group input-group-md">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input autofocus ng-model="signup.loginForm.user" required name="user" type="text" class="form-control input-md" placeholder="Username">
+
+                  </div>
+                  <br/>
+                  <div ng-show="lform.user.$dirty && lform.username.$invalid" class="alert alert-danger" role="alert">
+                    <p ng-if="lform.user.$error.required">Enter a username.</p>
+                  </div>
+
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : lform.pass.$invalid}">
+                  <label for="pass">Password*</label>
+
+                  <div class="input-group input-group-md">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input ng-model="signup.loginForm.pass" required name="pass" type="password" class="form-control input-md" placeholder="Password">
+                  </div>
+                  <br/>
+                  <div ng-show="lform.pass.$dirty && lform.pass.$invalid" class="alert alert-danger" role="alert">
+                    <p ng-if="lform.pass.$error.required">Enter a password.</p>
+                  </div>
+
+                </div>
+
+              </fieldset>
+
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-block btn-md btn-success">
+                  Register
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+          <div class="panel-footer">
+
+            <!-- <span style="display:block; float:left; padding:5px; margin-bottom:10px;">Already have an account?</span> <a ui-sref="gate({})">Login</a>. -->
+
+            <!-- <div>
+              <button ui-sref="gate({})" type="submit" class="btn btn-block btn-sm btn-default">
+                Log In
+              </button>
+            </div> -->
+
+            <div>
+              Already have an account? <a ui-sref="gate({})">Login</a>.
+
+                <!-- <button ui-sref="signup({})" type="submit" class="btn btn-block btn-sm btn-default">
+                    Sign Up
+                </button> -->
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

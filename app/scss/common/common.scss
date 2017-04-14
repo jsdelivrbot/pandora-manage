@@ -1,0 +1,78 @@
+$icon-font-path: "../../fonts/bootstrap/";
+
+// @import "_variables.scss";_
+@import "../../repository.bower/bootswatch-scss/flatly/_variables.scss";
+
+@import "../../repository.bower/bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+@import "../../repository.bower/bootswatch-scss/flatly/_bootswatch.scss";
+
+
+@import "../../repository.bower/bourbon/dist/bourbon";
+@import "../../repository.bower/fontawesome/scss/font-awesome";
+
+@import "_master.scss";
+@import "_cg-busy.scss";
+@import "_aside.scss";
+@import "_ellipsis-animation.scss";
+@import "_uploader.scss";
+@import "_rzslider.scss";
+
+
+@import "admin/_gate.scss";
+
+.imgCropper-controls button {
+  margin-right: 4px;
+}
+
+.imgCropper-controls button:nth-child(4) {
+  display: none;
+}
+
+.clickThroughBackdrop {
+  background-color: red;
+  // display: none;
+  pointer-events: all;
+}
+
+.customModalWindowClass {
+  left: 601px;
+}
+
+.page-header {
+  margin-top:0;
+}
+
+.page-container {
+  border:1px solid #DDDDDD;
+  float:left;
+  background-color:#F9F9F9;
+  margin-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.label {
+  border-radius: 0;
+}
+
+.badge {
+  border-radius: 0;
+}
+
+.form-group  {
+  padding-bottom: 10px;
+}
+
+label {
+  padding-bottom: 5px;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #fff;
+}

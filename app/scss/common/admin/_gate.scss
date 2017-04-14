@@ -1,0 +1,61 @@
+.huge {
+  font-size: 50px;
+}
+
+.logo_login {
+  display:block;
+  margin:auto;
+  width: 240px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.login-heading {
+  text-align: center;
+}
+
+.inline-inspiration-photo {
+  max-width:400px;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-top-branding {
+  display: block;
+  height: 80px;
+  width: 100%;
+  background-color: white;
+}
+
+.header-top-branding-logo {
+  float:left;
+  max-height: 40px;
+  margin: 20px;
+  margin-left:32px;
+}
+
+.header-top-branding-powered-by {
+  float:left;
+  margin-top:20px;
+  margin-right:20px;
+  width: 200px;
+}
+
+.header-top-branding-powered-by span {
+  float:left;
+  display: block;
+  font-size: 8pt;
+  font-weight: bold;
+  width: 100%;
+}
+
+.header-top-branding-powered-by img{
+  float:left;
+  max-height: 30px;
+}

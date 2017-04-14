@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h3 class="modal-title"><span ng-if="confirmationDialog.isError" class="label label-danger">Error</span> {{confirmationDialog.text}}</h3>
+</div>
+
+<div class="modal-body">
+	<div class="container-fluid">
+	</div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="confirmationDialog.ok()">Okay</button>
+    <button ng-if="confirmationDialog.cancelButton" class="btn btn-default" ng-click="confirmationDialog.cancel()">Cancel</button>
+</div>

@@ -1,0 +1,56 @@
+{
+  "name": "identify3d-admin-app",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Identify3D/buerau",
+  "authors": [
+    "Identify3D <support@identify3d.com>"
+  ],
+  "dependencies": {
+    "requirejs": "2.1.15",
+    "almond": "0.3.0",
+    "requirejs-domready": "2.0.1",
+    "requirejs-i18n": "2.0.4",
+    "requirejs-text": "~2.0.12",
+    "async": "0.9.0",
+    "lodash": "3.6.0",
+    "q": "1.0.0",
+    "jquery": "2.1.3",
+    "angular": "1.3.0",
+    "angular-i18n": "1.2.18",
+    "angular-sanitize": "1.2.18",
+    "angular-resource": "1.2.18",
+    "angular-animate": "1.2.18",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.5",
+    "angular-translate": "2.4.0",
+    "angular-localization": "1.1.0",
+    "angular-loading-bar": "0.6.0",
+    "angular-ui-select": "0.9.4",
+    "angular-ui-router": "0.2.11",
+    "angular-bootstrap": "0.12.0",
+    "angular-ui-utils": "bower",
+    "angular-file-upload": "1.1.5",
+    "normalize-css": "3.0.2",
+    "bootstrap-sass-official": "3.2.0",
+    "fontawesome": "4.2.0",
+    "bourbon": "4.0.2",
+    "tc-angular-chartjs": "1.0.9",
+    "angular-aside": "1.1.2",
+    "ng-idle": "0.3.5",
+    "angular-busy": "4.1.2",
+    "checklist-model": "~0.2.4",
+    "icheck": "~1.0.2",
+    "bootswatch-scss": "~3.2.0",
+    "ng-image-cropper":"1.1.7",
+    "angular-slider": "0.2.4",
+    "angularjs-slider": "5.8.7",
+    "ng-slider": "2.2.4",
+    "venturocket-angular-slider": "0.3.2"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.18"
+  },
+  "resolutions": {
+    "angular": "1.3.0",
+    "angular-animate": "1.2.18"
+  }
+}

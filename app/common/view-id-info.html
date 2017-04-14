@@ -1,0 +1,105 @@
+<form cg-busy="{promise:viewIDInfo.myPromise, message:''}" name="Lform" novalidate ng-submit="viewIDInfo.submitForm(Lform)">
+
+    <div class="modal-header">
+        <h3 class="modal-title">ID Info <span class="badge">{{viewIDInfo.orderData.order_id}}</span></h3>
+
+        <button style="position:absolute; right:20px; top:20px;" ui-sref="^" class="btn btn-md btn-primary">Done</button>
+
+    </div>
+
+    <div class="modal-body">
+
+        <div class="container-fluid">
+
+          <div class="row">
+              <div class="col-md-6">
+
+                  <div class="bs-example" data-example-id="simple-table">
+
+                      <table class="table table-bordered">
+                          <tbody>
+                              <tr>
+                                 <td>Order #</td>
+                                 <td>{{viewIDInfo.orderData.order_id}}</td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+
+
+          <!-- <div class="page-header">
+              <h4><i class="fa fa-info"></i> Manufacturing Parameters</h4>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+
+                  <div class="bs-example" data-example-id="simple-table">
+
+                  <div ng-if="!viewIDInfo.reportData.reports || viewIDInfo.reportData.reports.length < 1" class="alert alert-danger" role="alert">
+                        <p>No trace data found.</p>
+                    </div>
+
+                      <table class="table table-bordered table-striped">
+                          <thead>
+                             <tr>
+                                 <th>Manufacturer</th>
+                                 <th>Model</th>
+                             </tr>
+                         </thead>
+                          <tbody>
+                              <tr>
+                                 <td>{{viewIDInfo.orderData.manufacturingParameters.machineManufacturer}}</td>
+                                 <td>{{viewIDInfo.orderData.manufacturingParameters.machineModel}}</td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div> -->
+
+          <div class="page-header">
+              <h4><i class="fa fa-info"></i> Report</h4>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+
+                  <div class="bs-example" data-example-id="simple-table">
+
+                    <div class="alert alert-danger" role="alert">
+                        <p>No report found.</p>
+                    </div>
+
+                      <!-- <table class="table table-bordered table-striped">
+                          <thead>
+                             <tr>
+                                 <th>Manufacturer</th>
+                                 <th>Model</th>
+                             </tr>
+                         </thead>
+                          <tbody>
+                              <tr>
+                                 <td>{{viewIDInfo.orderData.manufacturingParameters.machineManufacturer}}</td>
+                                 <td>{{viewIDInfo.orderData.manufacturingParameters.machineModel}}</td>
+                              </tr>
+
+                          </tbody>
+                      </table> -->
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" ui-sref="^" class="btn btn-md btn-primary">Done</button>
+    </div>
+
+</form>

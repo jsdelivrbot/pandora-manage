@@ -1,0 +1,8 @@
+<a class="typeahead-user-item">
+    <img ng-if="match.model.image_url" ng-src="{{match.model.image_url}}" width="40">
+
+    <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span> <span ng-if="match.model.producttypename" bind-html-unsafe="match.model.producttypename | typeaheadHighlight:query"></span>
+    <br/>
+    <span ng-if="match.model.substancename" bind-html-unsafe="match.model.substancename | typeaheadHighlight:query"></span>
+
+</a>

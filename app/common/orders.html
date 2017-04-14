@@ -1,0 +1,148 @@
+<div cg-busy="{promise:orders.myPromise, message:''}" class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-1x fa-list"></i> Order Management</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <br/>
+
+                    <div ng-if="orders.noneFound" class="alert alert-danger" role="alert">
+                        <p>No orders found.</p>
+                    </div>
+
+                    <table ng-if="orders.orders.length > 0" fixed-table-headers class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>ORDER #</th>
+                                <th>DESIGN NAME</th>
+                                <th>USER ID</th>
+                                <th>COMPANY</th>
+                                <th># ORDERED</th>
+                                <th># AUTHORIZED</th>
+                                <th>DATE CREATED</th>
+                                <!-- <th>STATUS</th> -->
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr ng-repeat-start="order in orders.orders">
+                                <td>
+                                  <button ng-show="!orders.authorizationSections[order.order_id]" ng-click="orders.authorizationSections[order.order_id] = true" type="button" class="btn btn-sm btn-primary">+</button>
+                                  <button ng-show="orders.authorizationSections[order.order_id] === true" ng-click="orders.authorizationSections[order.order_id] = false" type="button" class="btn btn-sm btn-primary">-</button>
+                                </td>
+                                <td>{{order.order_id}}</td>
+                                <td>
+                                    <a href popover-trigger="mouseenter" popover-placement="right" popover="{{order.description}}">{{order.designName}}<a/>
+                                </td>
+                                <td>{{order.userID}}</td>
+                                <td>{{order.companyName}}</td>
+                                <td>{{order.quantityOrdered ? order.quantityOrdered : '-'}}</td>
+                                <td>{{order.quantityAuthorized ? order.quantityAuthorized : '-'}}</td>
+                                <td>{{order.dateCreated}}</td>
+                                <!-- <td>
+                                  <span ng-if="order.status === 'New'" class="label label-default">{{order.status}}</span>
+                                  <span ng-if="order.status === 'Idle'" class="label label-primary">{{order.status}}</span>
+                                  <span ng-if="order.status === 'Awaiting Manufacturing'" class="label label-primary">{{order.status}}</span>
+                                  <span ng-if="order.status === 'Finished'" class="label label-success">{{order.status}}</span>
+                                  <span ng-if="order.status === 'Expired'" class="label label-warning">{{order.status}}</span>
+                                  <span ng-if="order.status === 'Cancelled'" class="label label-danger">{{order.status}}</span>
+                                </td>
+                              -->
+                                <!-- <td>
+                                  <button ng-show="order.status !== 'Cancelled'" ui-sref=".assign({orderNumber: order.orderNumber})" type="button" class="btn btn-sm btn-primary">Assign</button>
+                                  <button ng-click="orders.archiveJob(order.designId)" type="button" class="btn btn-sm btn-default">Archive</button>
+                                  <button ui-sref=".viewReport({orderNumber: order.orderNumber})"  type="button" class="btn btn-sm btn-default">View Reports</button>
+                                </td> -->
+                                <td>
+                                  <button ng-show="order.status !== 'Cancelled'" ui-sref=".assign({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button>
+                                  <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button> -->
+                                  <button ui-sref=".viewIDInfo({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID Info</button>
+                                  <!-- <button ui-sref=".?({orderNumber: order.order_id})"  type="button" class="btn btn-sm btn-default">ID Info</button> -->
+                                </td>
+                              </tr>
+                              <tr ng-show="orders.authorizationSections[order.order_id] === true" ng-repeat-end>
+                                <td colspan="2">
+                                </td>
+                                <td colspan="6">
+
+                                  <div ng-if="!orders.groupedAuthorizations[order.order_id]" class="alert alert-warning" role="alert">
+                                      <p>No authorizations found for Order #{{order.order_id}}.</p>
+                                  </div>
+
+                                  <table ng-if="orders.groupedAuthorizations[order.order_id].length > 0" fixed-table-headers class="table table-bordered table-striped">
+                                      <thead>
+                                          <tr>
+                                              <th>AUTHORIZATION #</th>
+                                              <th>LICENSEE</th>
+                                              <th># AUTHORIZED</th>
+                                              <th>DATE CREATED</th>
+                                              <!-- <th>STATUS</th> -->
+                                              <th>ACTION</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+
+                                          <tr ng-repeat="order in orders.groupedAuthorizations[order.order_id]">
+                                              <td>{{order.authorization_id}}</td>
+                                              <td>{{order.licensingParameters.licensee}}</td>
+                                              <td>{{order.licensingParameters.quantity ? order.licensingParameters.quantity : '-'}}</td>
+                                              <td>{{order.dateCreated}}</td>
+                                              <!-- <td>
+                                                <span ng-if="order.status === 'New'" class="label label-default">{{order.status}}</span>
+                                                <span ng-if="order.status === 'Idle'" class="label label-primary">{{order.status}}</span>
+                                                <span ng-if="order.status === 'Awaiting Manufacturing'" class="label label-primary">{{order.status}}</span>
+                                                <span ng-if="order.status === 'Finished'" class="label label-success">{{order.status}}</span>
+                                                <span ng-if="order.status === 'Expired'" class="label label-warning">{{order.status}}</span>
+                                                <span ng-if="order.status === 'Cancelled'" class="label label-danger">{{order.status}}</span>
+                                              </td>
+                                            -->
+                                              <!-- <td>
+                                                <button ng-show="order.status !== 'Cancelled'" ui-sref=".assign({orderNumber: order.orderNumber})" type="button" class="btn btn-sm btn-primary">Assign</button>
+                                                <button ng-click="orders.archiveJob(order.designId)" type="button" class="btn btn-sm btn-default">Archive</button>
+                                                <button ui-sref=".viewReport({orderNumber: order.orderNumber})"  type="button" class="btn btn-sm btn-default">View Reports</button>
+                                              </td> -->
+                                              <td>
+                                                <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-default">ID3 Trace</button> -->
+                                                <button ui-sref=".viewReport({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID3 Trace</button>
+                                              </td>
+                                            </tr>
+
+
+                                    </tbody>
+                                  </table>
+
+                                </td>
+                              <tr>
+
+                      </tbody>
+                    </table>
+
+                </div>
+
+                <div class="panel-footer">
+                  <!--
+                  <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                      <pagination  class="pagination-sm" ng-change="orders.navigateToPage()" total-items="orders.pager.totalItems" ng-model="orders.pager.currentPage" items-per-page="orders.pager.itemPerPage" max-size="orders.pager.maxSize" boundary-links="true" rotate="false" num-pages="prescriptions.pager.numPages"></pagination>
+                    </div>
+                  </div>
+                  -->
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

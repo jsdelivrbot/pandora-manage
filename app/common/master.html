@@ -1,0 +1,115 @@
+<header class="header">
+
+  <nav ui-scrollfix="+0" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+    <!-- <div class="header-top-branding">
+      <img class="header-top-branding-logo" src="media/branding/logo.png">
+
+      <span class="header-top-branding-powered-by">
+        <span>Powered by</span>
+        <img src="media/branding/powered-by.png">
+      </span>
+    </div> -->
+
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <span  style="margin-left:10px;" class="navbar-brand">
+          <span class="label label-primary">Pandora</span> Manage
+        </span>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav">
+
+          <!-- <li ui-sref-active-eq="active">
+            <a href ui-sref="identify3D.statistics({createdAfter:0, createdBefore:0})" data-toggle="dropdown"><i class="fa fa-lg fa-tachometer"></i> Dashboard</a>
+          </li> -->
+
+          <li ui-sref-active-eq="active">
+            <a href ui-sref="identify3D.orders({pageNum:1, keyword:'', createdAfter:0, createdBefore:0, prescriptionStatus: 'created'})" data-toggle="dropdown"><i class="fa fa-lg fa-list"></i> Orders</a>
+          </li>
+
+          <li ui-sref-active-eq="active">
+             <a href ui-sref="identify3D.devices({pageNum:1, keyword:'', createdAfter:0, createdBefore:0, prescriptionStatus: 'created'})" data-toggle="dropdown"><i class="fa fa-lg fa-print"></i> Devices</a>
+           </li>
+
+          <li ui-sref-active-eq="active">
+            <a href ui-sref="identify3D.users({pageNum:1, keyword:'', createdAfter:0, createdBefore:0, prescriptionStatus: 'created'})" data-toggle="dropdown"><i class="fa fa-lg fa-users"></i> Users</a>
+          </li>
+
+  <!--
+          <li ng-if="!master.uploader.isUploading" dropdown class="dropdown">
+            <a dropdown-toggle href class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cloud-upload"></i> Upload <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li ui-sref-active-eq="active">
+
+                <div class="fileUpload">
+                  <span style="margin-left:20px;"><i class="fa fa-lg fa-file-code-o"></i> .id3 File</span>
+                  <input accept=".id3,application/id3" type="file" nv-file-select="" uploader="master.uploader" class="upload" />
+                </div>
+
+              </li>
+
+            </ul>
+          </li> -->
+
+        </ul>
+
+        <div  style="float:left; display:block; width:100px; height: 40px; padding-top:16px;">
+
+          <div ng-if="master.uploader.queue.length > 0"  class="progress">
+             <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" ng-style="{ 'width': master.uploader.progress + '%' }" >
+               <span>{{master.uploader.progress}}%</span>
+             </div>
+             <!-- <span ng-if="!master.uploader.progress" class="sc-start-upload-notice">Click Save to upload {{master.uploader.queue[0]._file.name }}</span> -->
+           </div>
+         </div>
+
+
+        <ul class="nav navbar-nav navbar-right">
+          <li dropdown class="dropdown">
+            <a dropdown-toggle href class="dropdown-toggle" data-toggle="dropdown"><span>{{master.currentUser.firstName}} {{master.currentUser.lastName}} ({{master.currentUser.username}})</span>  <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href ng-click="master.logout()"><i class="fa fa-power-off"></i> Log Out</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- <form ng-show="master.isActiveState('identify3D.users')" class="navbar-form">
+          <div class="form-group">
+
+            <button ng-show="master.selectedUsers.length > 0" ui-sref="identify3D.users.sendNotification" type="button" class="btn btn-sm btn-danger">Send Notification <span ng-show="master.selectedUsers.length > 0" class="label label-info">{{master.selectedUsers.length}}</span></button>
+
+            <button ng-show="master.selectedUsers.length === 0" ui-sref="identify3D.users.sendNotification" type="button" class="btn btn-sm btn-danger">Send Notification <span class="label label-info">everyone</span></button>
+
+          </div>
+        </form> -->
+
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+<div class="master-content container-fluid">
+
+  <div class="page-header">
+    <!-- <h3>
+    Hello, {{master.currentUser.first_name}}.
+    </h3> -->
+  </div>
+
+  <div ui-view="interface">
+  </div>
+
+</div>
+
+<footer ng-include="'common/footer.html'" class="footer"></footer>

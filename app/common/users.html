@@ -1,0 +1,101 @@
+<div cg-busy="{promise:orders.myPromise, message:''}" class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <!-- <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-1x fa-users"></i> User Management</h3>
+
+                    <button ui-sref=".editUser({userId: 1})"  type="button" class="btn btn-sm btn-success pull-right">Add New User</button>
+
+                </div> -->
+
+                <div class="panel-heading clearfix">
+                    <h3 style="float:left;" class="panel-title"><i class="fa fa-1x fa-ysers"></i> User Management</h3>
+
+                    <button style="float:right;" ui-sref=".editUser({userId: -1})"  type="button" class="btn btn-sm btn-success">Add New User</button>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <br/>
+
+                    <div ng-if="users.noneFound" class="alert alert-danger" role="alert">
+                        <p>No orders found.</p>
+                    </div>
+
+                    <table ng-if="users.orders.length > 0" fixed-table-headers class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>FULL NAME</th>
+                                <th>EMAIL <span class="label label-default">username</span></th>
+                                <th>ROLE</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Chris Adkins</td>
+                            <td>
+                                <a href popover-trigger="mouseenter" popover-placement="right" popover="{{order.description}}">chris@identify3d.com<a/>
+                            </td>
+                            <td><span class="label label-default">user</span></td>
+                            <td>
+                              <button ui-sref=".editUser({userId: 1})"  type="button" class="btn btn-sm btn-primary">Edit</button>
+                              <button ng-click="users.deleteUser(1)" type="button" class="btn btn-sm btn-danger">Delete</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Bruce Bernstein</td>
+                            <td>
+                                <a href popover-trigger="mouseenter" popover-placement="right" popover="{{order.description}}">bruce@identify3d.com<a/>
+                            </td>
+                            <td>
+                              <span class="label label-success">admin</span>
+                            </td>
+                            <td>
+                              <button ui-sref=".editUser({userId: 1})"  type="button" class="btn btn-sm btn-primary">Edit</button>
+                              <button ng-click="users.deleteUser(1)" type="button" class="btn btn-sm btn-danger">Delete</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Joe Inkenbrandt</td>
+                            <td>
+                                <a href popover-trigger="mouseenter" popover-placement="right" popover="{{order.description}}">joe@identify3d.com<a/>
+                            </td>
+                            <td>
+                              <span class="label label-success">admin</span>
+                              <span class="label label-primary">you</span>
+                            </td>
+                            <td>
+                              <button ui-sref=".editUser({userId: 1})"  type="button" class="btn btn-sm btn-primary">Edit</button>
+                              <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Edit</button> -->
+                              <button ng-click="users.deleteUser(1)" type="button" class="btn btn-sm btn-danger">Delete</button>
+                            </td>
+                          </tr>
+                      </tbody>
+                    </table>
+
+                </div>
+
+                <div class="panel-footer">
+                  <!--
+                  <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                      <pagination  class="pagination-sm" ng-change="users.navigateToPage()" total-items="users.pager.totalItems" ng-model="users.pager.currentPage" items-per-page="users.pager.itemPerPage" max-size="users.pager.maxSize" boundary-links="true" rotate="false" num-pages="prescriptions.pager.numPages"></pagination>
+                    </div>
+                  </div>
+                  -->
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

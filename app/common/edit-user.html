@@ -1,0 +1,38 @@
+<form cg-busy="{promise:editUser.myPromise, message:''}" name="Lform" novalidate ng-submit="editUser.submitForm(Lform)">
+
+    <div class="modal-header">
+        <h3 class="modal-title">{{editUser.isEditing ? "Edit" : "New"}} User</h3>
+
+        <button style="position:absolute; right:20px; top:20px;" ui-sref="^" class="btn btn-md btn-primary">Cancel</button>
+
+    </div>
+
+    <div class="modal-body">
+
+        <div class="container-fluid">
+
+          <div class="page-header">
+              <h4><i class="fa fa-user"></i> User Details</h4>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+
+                  <div class="bs-example" data-example-id="simple-table">
+
+                      <div class="alert alert-danger" role="alert">
+                          <p>No user found.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" ui-sref="^" class="btn btn-md btn-success">Save</button>
+    </div>
+
+</form>

@@ -1,0 +1,50 @@
+<div cg-busy="{promise:devices.myPromise, message:''}" class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-1x fa-print"></i> Printer Management</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <br/>
+
+                    <div class="row">
+
+                        <div ng-repeat="printer in devices.printers" class="col-sm-4 col-md-2">
+                            <div class="thumbnail" style="height:420px;">
+                                <img style="height:200px;" src="{{printer.image || 'media/3d-printer-placeholder.png'}}">
+
+                                <div class="caption">
+                                    <h3>{{printer.manufacturer}} {{printer.model}}</h3>
+                                    <h4>{{printer.name}} </h4>
+                                    <!-- <p><span class="badge">{{printer.family}}</span></p> -->
+                                    <p>
+                                        <span class="label label-info">{{printer.status}}</span>
+                                        <span class="label label-default">{{printer.family}}</span>
+                                    </p>
+                                    <p>
+                                        <a ui-sref=".deviceInfo({deviceId: printer.deviceId})" href class="btn btn-sm btn-default" role="button">Details</a>
+                                        <a href>{{order.customerName}}<a/>
+                                        <a ng-if="printer.url && printer.url.length > 0" popover-trigger="mouseenter" popover-placement="bottom" popover="{{printer.url}}" target="_blank" href="{{printer.url}}" class="btn btn-sm btn-default" role="button"><i class="fa fa-1x fa-link"></i> </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

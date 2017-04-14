@@ -1,0 +1,143 @@
+<form cg-busy="{promise:validatorModal.myPromise, message:''}" name="Lform" novalidate ng-submit="validatorModal.submitForm(Lform)">
+
+    <div class="modal-header">
+      <h3 ng-if="validatorModal.isWorking"  class="modal-title text-center">Validating</h3>
+      <h3 ng-if="!validatorModal.isWorking"  class="modal-title text-center">Validation Complete</h3>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="container-fluid">
+
+
+          <div class="row">
+
+            <div ng-if="validatorModal.isWorking" class="col-md-12 text-center">
+              <div class="timer-loader"> </div>
+            </div>
+
+            <div ng-if="!validatorModal.isWorking && validatorModal.success === false" class="alert alert-danger" role="alert">Validation failed, please review your assignment order.</div>
+            <div ng-if="!validatorModal.isWorking && validatorModal.success === true" class="alert alert-success" role="alert">Your request has been successfully submitted.</div>
+
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-2 text-center">
+              <div ng-if="validatorModal.isWorking" class="throbber-loader"> </div>
+              <h4 class="text-success" ng-if="!validatorModal.isWorking && validatorModal.status === true"><i class="fa fa-check fa-2x"></i></h4>
+              <h4 class="text-danger" ng-if="!validatorModal.isWorking && validatorModal.status === false"><i class="fa fa-close fa-2x"></i></h4>
+              <h4 class="text-muted" ng-if="!validatorModal.isWorking && validatorModal.status === undefined"><i class="fa fa-ban fa-2x"></i></h4>
+            </div>
+            <div class="col-md-10">
+
+
+              <div class="page-header">
+                  <h4 style="font-weight:bold;">
+                    Status
+                  </h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2 text-center">
+              <div ng-if="validatorModal.isWorking" class="throbber-loader"> </div>
+              <h4 class="text-success" ng-if="!validatorModal.isWorking && validatorModal.certificate === true"><i class="fa fa-check fa-2x"></i></h4>
+              <h4 class="text-danger" ng-if="!validatorModal.isWorking && validatorModal.certificate === false"><i class="fa fa-close fa-2x"></i></h4>
+              <h4 class="text-muted" ng-if="!validatorModal.isWorking && validatorModal.certificate === undefined"><i class="fa fa-ban fa-2x"></i></h4>
+            </div>
+            <div class="col-md-10">
+
+              <div class="page-header">
+                  <h4 style="font-weight:bold;">
+                    Certificate Check
+                  </h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2 text-center">
+              <div ng-if="validatorModal.isWorking" class="throbber-loader"> </div>
+              <h4 class="text-success" ng-if="!validatorModal.isWorking && validatorModal.device === true"><i class="fa fa-check fa-2x"></i></h4>
+              <h4 class="text-danger" ng-if="!validatorModal.isWorking && validatorModal.device === false"><i class="fa fa-close fa-2x"></i></h4>
+              <h4 class="text-muted" ng-if="!validatorModal.isWorking && validatorModal.device === undefined"><i class="fa fa-ban fa-2x"></i></h4>
+            </div>
+            <div class="col-md-10">
+
+              <div class="page-header">
+                  <h4 style="font-weight:bold;">
+                    Device Check
+                  </h4>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2 text-center">
+              <div ng-if="validatorModal.isWorking" class="throbber-loader"> </div>
+              <h4 class="text-success" ng-if="!validatorModal.isWorking && validatorModal.parameterMismatch === true"><i class="fa fa-check fa-2x"></i></h4>
+              <h4 class="text-danger" ng-if="!validatorModal.isWorking && validatorModal.parameterMismatch === false"><i class="fa fa-close fa-2x"></i></h4>
+              <h4 class="text-muted" ng-if="!validatorModal.isWorking && validatorModal.parameterMismatch === undefined"><i class="fa fa-ban fa-2x"></i></h4>
+            </div>
+            <div class="col-md-10">
+
+              <div class="page-header">
+                  <h4 style="font-weight:bold;">
+                    Illegal Parameter Check
+                  </h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2 text-center">
+              <div ng-if="validatorModal.isWorking" class="throbber-loader"> </div>
+              <h4 class="text-success" ng-if="!validatorModal.isWorking && validatorModal.expiration === true"><i class="fa fa-check fa-2x"></i></h4>
+              <h4 class="text-danger" ng-if="!validatorModal.isWorking && validatorModal.expiration === false"><i class="fa fa-close fa-2x"></i></h4>
+              <h4 class="text-muted" ng-if="!validatorModal.isWorking && validatorModal.expiration === undefined"><i class="fa fa-ban fa-2x"></i></h4>
+            </div>
+            <div class="col-md-10">
+
+              <div class="page-header">
+                  <h4 style="font-weight:bold;">
+                    Expiration Check
+                  </h4>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-2 text-center">
+              <div ng-if="validatorModal.isWorking" class="throbber-loader"> </div>
+              <h4 class="text-success" ng-if="!validatorModal.isWorking && validatorModal.quantity === true"><i class="fa fa-check fa-2x"></i></h4>
+              <h4 class="text-danger" ng-if="!validatorModal.isWorking && validatorModal.quantity === false"><i class="fa fa-close fa-2x"></i></h4>
+              <h4 class="text-muted" ng-if="!validatorModal.isWorking && validatorModal.quantity === undefined"><i class="fa fa-ban fa-2x"></i></h4>
+            </div>
+            <div class="col-md-10">
+
+              <div class="page-header">
+                  <h4 style="font-weight:bold;">
+                    Authorized Quantity Check
+                  </h4>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+    </div>
+
+    <div ng-if="!validatorModal.isWorking" class="modal-footer">
+        <a href="{{validatorModal.downloadURLData.url}}" download="{{validatorModal.downloadURLData.fileName || 'design'}}" ng-if="validatorModal.success === true && validatorModal.downloadURLData" class="btn btn-md btn-success">Download {{validatorModal.downloadURLData.fileName}}</a>
+        <button ng-if="validatorModal.success === true" type="button" ng-click="validatorModal.ok()" class="btn btn-md btn-primary">Close</button>
+        <button ng-if="validatorModal.success === false" type="button" ng-click="validatorModal.cancel()" class="btn btn-md btn-warning">Dismiss</button>
+    </div>
+
+</form>

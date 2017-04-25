@@ -66,7 +66,8 @@
                                 <td>
                                   <button ng-show="order.status !== 'Cancelled'" ui-sref=".assign({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button>
                                   <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button> -->
-                                  <button ui-sref=".viewIDInfo({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID Info</button>
+                                  <button ui-sref=".viewReport({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID3 Trace</button>
+
                                   <!-- <button ui-sref=".?({orderNumber: order.order_id})"  type="button" class="btn btn-sm btn-default">ID Info</button> -->
                                 </td>
                               </tr>
@@ -113,7 +114,8 @@
                                               </td> -->
                                               <td>
                                                 <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-default">ID3 Trace</button> -->
-                                                <button ui-sref=".viewReport({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID3 Trace</button>
+                                                <button ui-sref=".viewIDInfo({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID Info</button>
+
                                               </td>
                                             </tr>
 

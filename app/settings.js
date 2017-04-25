@@ -10,7 +10,7 @@ define({
     ping: {uri: "http://demo2.identify3d.com:3501/api/ping" },
     stats: {uri: "http://demo1.identify3d.net:3030/api/devices" },
     orders: {uri: "http://demo2.identify3d.com:3501/api/orders/order" },
-    devices: {uri: "http://demo1.identify3d.net:3030/api/devices" },
+    devices: {uri: "http://demo1.identify3d.net:3030/api/devices/device" },
     report: {uri: "http://demo1.identify3d.net:3030/api/report" },
   }
 });

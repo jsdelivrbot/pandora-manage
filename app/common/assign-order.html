@@ -270,11 +270,11 @@
 
                                 <div class="btn-group input-group" dropdown>
                                     <button type="button" class="btn btn-default dropdown-toggle" ng-class="{ 'btn-danger' : Lform.selectedPrinter.$invalid}" dropdown-toggle ng-disabled="false">
-                                        {{assignOrder.selectedPrinter ? assignOrder.selectedPrinter.name : 'Select Device' }} <span class="caret"></span>
+                                        {{assignOrder.selectedPrinter ? assignOrder.selectedPrinter.manufacturingParameters.deviceName: 'Select Device' }} <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li ng-repeat="printer in assignOrder.printers">
-                                            <a href ng-click="assignOrder.selectedPrinter=printer"><span class="label label-info">{{printer.status}}</span> {{printer.name}}</a>
+                                            <a href ng-click="assignOrder.selectedPrinter=printer"><span class="label label-default">{{printer.manufacturingParameters.family}}</span> <span class="label label-info">{{printer.manufacturingParameters.machineType}}</span> {{printer.manufacturingParameters.deviceName}}</a>
                                         </li>
 
                                     </ul>

@@ -13,8 +13,9 @@
 
             <div class="page-header">
                 <h4>
-                  {{deviceInfo.device.name}}
-                  <span class="label label-info">{{deviceInfo.device.status}}</span>
+                  {{deviceInfo.device.manufacturingParameters.deviceName}}
+                  <span class="label label-default">{{deviceInfo.device.manufacturingParameters.family}}</span>
+                  <span class="label label-info">{{deviceInfo.device.manufacturingParameters.machineType}}</span>
                 </h4>
             </div>
 
@@ -22,7 +23,7 @@
 
                 <div class="col-md-12">
 
-                    <img ng-src="{{deviceInfo.device.image}}" class="inline-inspiration-photo center-block">
+                    <img ng-src="{{deviceInfo.device.manufacturingParameters.image}}" class="inline-inspiration-photo center-block">
 
                 </div>
 
@@ -42,21 +43,21 @@
                         <table class="table table-bordered">
                             <tbody>
 
-                                <tr ng-repeat="(key, value) in deviceInfo.deviceDynamic.ManufacturingInfo" ng-show="!!value">
+                                <tr ng-repeat="(key, value) in deviceInfo.device.manufacturingParameters" ng-show="!!value">
                                     <th scope="row">{{key}}</th>
                                     <td>
                                         {{value}}
                                     </td>
                                 </tr>
 
-                                <tr ng-if="deviceInfo.device.url && deviceInfo.device.url.length > 0">
+                                <tr ng-if="deviceInfo.device.manufacturingParameters.url && deviceInfo.device.manufacturingParameters.url.length > 0">
                                     <th scope="row">Console</th>
                                     <td>
-                                        <a target="_blank" href="{{deviceInfo.device.url}}">{{deviceInfo.device.url}}</a>
+                                        <a target="_blank" href="{{deviceInfo.device.manufacturingParameters.url}}">{{deviceInfo.device.manufacturingParameters.url}}</a>
                                     </td>
                                 </tr>
 
-                                <tr ng-repeat="(key, value) in deviceInfo.deviceDynamic.ReproductionFeatures" ng-show="!!value && !deviceInfo.isArray(value)">
+                                <tr ng-repeat="(key, value) in deviceInfo.device.ReproductionFeatures" ng-show="!!value && !deviceInfo.isArray(value)">
                                     <th scope="row">{{key}}</th>
 
                                     <td ng-if="!deviceInfo.isObject(value)">

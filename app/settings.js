@@ -4,13 +4,13 @@ define({
   defaultRoutePath: '/',
   version: "0.1.0",
   debug: true,
-  apiEndpoint: '', // http://demo1.identify3d.net:3030/
+  apiEndpoint: 'http://demo2.identify3d.com:3535/', // http://demo2.identify3d.com:3535/
   apiFunctions: {
-    login: {uri: "http://demo2.identify3d.com:3501/api/login" },
-    ping: {uri: "http://demo2.identify3d.com:3501/api/ping" },
-    stats: {uri: "http://demo1.identify3d.net:3030/api/devices" },
-    orders: {uri: "http://demo2.identify3d.com:3501/api/orders/order" },
-    devices: {uri: "http://demo1.identify3d.net:3030/api/devices/device" },
-    report: {uri: "http://demo1.identify3d.net:3030/api/report" },
+    login: {uri: "api/login" },
+    ping: {uri: "api/ping" },
+    stats: {uri: "api/devices/device" },
+    orders: {uri: "api/orders/order" },
+    devices: {uri: "api/devices/device" },
+    report: {uri: "api/report" },
   }
 });

@@ -448,7 +448,7 @@ define([
 					modalInstance: ['$stateParams', '$aside', 'devicesData', function($stateParams, $aside, devicesData){
 
 						var deviceId = $stateParams.deviceId;
-						var devices = devicesData.entries;
+						var devices = devicesData;
 
 						var modalInstance = $aside.open({
 							templateUrl: 'common/device-info.html',
@@ -460,12 +460,15 @@ define([
 							resolve: {
 								deviceData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-									var device = _.findWhere(devices, {deviceId: deviceId});
+									var device = _.findWhere(devices, function(device) {
+										return device.manufacturingParameters.deviceID === deviceId;
+									});
 
 									return angular.extend({}, device);
 								}],
 								deviceDynamicData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
-									return Identify3D.get3DDevice(0, deviceId);
+									// return Identify3D.get3DDevice(0, deviceId);
+									return {};
 								}]
 							}
 						});
@@ -684,7 +687,7 @@ define([
 
 						var orderNumber = parseInt($stateParams.orderNumber, 10);
 						var orders = ordersData;
-						var printers = devicesData.entries;
+						var printers = devicesData;
 
 						var modalInstance = $aside.open({
 							templateUrl: 'common/assign-order.html',

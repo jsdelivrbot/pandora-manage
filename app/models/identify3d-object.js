@@ -451,15 +451,12 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
         return deferred.promise;
       }
 
-      Identify3D.prototype.doBureauJobEndpoint = function(data){
+      Identify3D.prototype.doBureauJobEndpoint = function(data, orderId){
 
         var deferred = $q.defer();
-
-        var fn = adminAppSettings.apiFunctions.orders;
-
         var req = {
           method: 'POST',
-          url: this.serverUri + fn.uri,
+          url: this.serverUri + 'api/orders/' + orderId + '/authorize',
           data:  data,
           headers: {
             'Accept': 'application/json',
@@ -503,18 +500,19 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
         })
       }
 
-      Identify3D.prototype.doBureauSaveJob = function(designId, deviceId, deviceUrl, data){
+      Identify3D.prototype.doBureauSaveJob = function(designId, deviceId, deviceUrl, data, orderId){
+
         return this.doBureauJobEndpoint(angular.extend({
           command: 'save',
           designId: designId,
           printer: {
             deviceId: deviceId,
             url: deviceUrl
-          }
-        }, data))
+          },
+        }, data), orderId)
       }
 
-      Identify3D.prototype.doBureauSubmitJob = function(designId, deviceId, deviceUrl, data){
+      Identify3D.prototype.doBureauSubmitJob = function(designId, deviceId, deviceUrl, data, orderId){
         return this.doBureauJobEndpoint(angular.extend({
           command: 'submit',
           designId: designId,
@@ -522,7 +520,7 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
             deviceId: deviceId,
             url: deviceUrl
           }
-        }, data));
+        }, data), orderId);
       }
 
       Identify3D.prototype.getDownloadUri = function(fileData){

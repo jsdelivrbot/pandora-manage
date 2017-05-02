@@ -501,7 +501,6 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
       }
 
       Identify3D.prototype.doBureauSaveJob = function(designId, deviceId, deviceUrl, data, orderId){
-
         return this.doBureauJobEndpoint(angular.extend({
           command: 'save',
           designId: designId,

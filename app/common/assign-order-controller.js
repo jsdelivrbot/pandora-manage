@@ -75,7 +75,7 @@ define([], function () {
         $state.go("^", $stateParams, {reload: true});
       }
 
-      var serverResponse = Identify3D.doBureauSubmitJob(self.order.designId, self.selectedPrinter.deviceId, self.selectedPrinter.url, self.orderForm, self.order.order_id)
+      var serverResponse = Identify3D.doBureauSubmitJob(self.order.designId, self.selectedPrinter.manufacturingParameters.deviceID, self.selectedPrinter.url, self.orderForm, self.order.order_id)
       // .then(function(user){
       //
       //   unblockAndNavigateToParentWithReload();
@@ -165,7 +165,7 @@ define([], function () {
         $state.go("^", $stateParams, {reload: true});
       }
 
-      var serverResponse = Identify3D.doBureauSaveJob(self.order.designId, self.selectedPrinter.deviceId, self.selectedPrinter.url, self.orderForm, self.order.order_id)
+      var serverResponse = Identify3D.doBureauSaveJob(self.order.designId, self.selectedPrinter.manufacturingParameters.deviceID, self.selectedPrinter.url, self.orderForm, self.order.order_id)
       // .then(function(fileData){
       //
       //   // console.log(self.orderForm)

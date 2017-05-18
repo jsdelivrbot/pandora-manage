@@ -3,7 +3,7 @@
 
 define([], function () {
 
-  function ValidatorModalController($q, $scope, $rootScope, $stateParams, $state, $modal, $aside, $modalInstance, Identify3D, serverResponse, confirmationDialogService){
+  function ValidatorModalController($q, $scope, $rootScope, $stateParams, $state, $modal, $aside, $modalInstance, Identify3D, serverResponse, orderData, confirmationDialogService){
 
     var self = this;
 
@@ -22,16 +22,18 @@ define([], function () {
     self.success = false;
 
     self.downloadURLData = null;
+    debugger;
 
 
     setTimeout(function(){
 
       serverResponse.serverResponse.then(function(fileData){
 
-
         self.downloadURLData = angular.extend({}, fileData);
 
-        self.downloadURLData.url = Identify3D.getDownloadUri(fileData);
+
+        self.downloadURLData.fileName = orderData.designName + '.apl';
+        self.downloadURLData.url = Identify3D.getDownloadUri(self.downloadURLData.fileName, fileData);
 
         console.log("succ", fileData, self.downloadURLData);
 
@@ -93,5 +95,5 @@ define([], function () {
 
   }
 
-  return {'ValidatorModalController': ['$q','$scope', '$rootScope', '$stateParams', '$state', '$modal', '$aside', '$modalInstance', 'Identify3DObject', 'serverResponse', 'confirmationDialogService', ValidatorModalController]};
+  return {'ValidatorModalController': ['$q','$scope', '$rootScope', '$stateParams', '$state', '$modal', '$aside', '$modalInstance', 'Identify3DObject', 'serverResponse', 'orderData', 'confirmationDialogService', ValidatorModalController]};
 });

@@ -92,7 +92,6 @@ define([], function () {
       //
       // });
 
-
       var modalInstance = $modal.open({
            animation: true,
            controller: 'ValidatorModalController as validatorModal',
@@ -105,7 +104,10 @@ define([], function () {
                return {
                  serverResponse: serverResponse,
                };
-             }
+             },
+             orderData: function () {
+               return orderData;
+             },
            }
          });
 

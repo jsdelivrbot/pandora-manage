@@ -522,8 +522,9 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
         }, data), orderId);
       }
 
-      Identify3D.prototype.getDownloadUri = function(fileData){
-        return this.serverUri + 'tmp/' + fileData.url
+      Identify3D.prototype.getDownloadUri = function(fileName, fileData){
+        // /api/authorizations/order_id/{authorization_id}/{name.apl}
+        return this.serverUri + 'api/authorizations/' + fileData.authId + '/' + fileData.orderId + '/' + encodeURIComponent(fileName);
       }
 
 

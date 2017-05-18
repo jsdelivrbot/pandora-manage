@@ -567,7 +567,7 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
         var token = this.authToken();
 
         var uploader = new FileUploader({
-                   url: this.serverUri + "api/upload",
+                   url: this.serverUri + "api/orders/order",
                   //  queueLimit: 1,
                    alias: 'file',
                    headers: {

@@ -22,8 +22,6 @@ define([], function () {
     self.success = false;
 
     self.downloadURLData = null;
-    debugger;
-
 
     setTimeout(function(){
 

@@ -13,8 +13,6 @@ define([], function () {
     self.createdAfter_jsdate = $stateParams.createdAfter ? new Date(parseInt($stateParams.createdAfter)) : null;
     self.createdBefore_jsdate = $stateParams.createdBefore ? new Date(parseInt($stateParams.createdBefore)) : null;
 
-    console.log(ordersData);
-
     var orders = _.filter(ordersData, function(order){
       return order.authorization_id === -1;
     });

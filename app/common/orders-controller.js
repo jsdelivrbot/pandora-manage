@@ -1,7 +1,7 @@
 /*global define*/
 'use strict';
 
-define([], function () {
+define(['lodash'], function (_) {
 
   function OrdersController($scope, $stateParams, $state, $modal, $aside, $q, $http, confirmationDialogService, Identify3D, ordersData){
 
@@ -14,6 +14,12 @@ define([], function () {
     self.createdBefore_jsdate = $stateParams.createdBefore ? new Date(parseInt($stateParams.createdBefore)) : null;
 
     console.log(ordersData);
+
+    self.dsiids = _.groupBy(ordersData, (order) => {
+      return order.dsiid
+    })
+
+    console.log(self.dsiids);
 
     var orders = _.filter(ordersData, function(order){
       return order.authorization_id === -1;

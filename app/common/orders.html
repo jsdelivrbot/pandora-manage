@@ -6,8 +6,28 @@
 
             <div class="panel panel-default">
 
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-1x fa-list"></i> Order Management</h3>
+                <div class="panel-heading clearfix">
+
+                    <h3 class="panel-title pull-left"><i class="fa fa-1x fa-list"></i> Order Management</h3>
+
+                    <div class="btn-group input-group pull-right" dropdown>
+                        <button type="button" class="btn btn-primary dropdown-toggle" ng-class="{ 'btn-danger' : Lform.filterByDsiId.$invalid}" dropdown-toggle ng-disabled="orders.dsids.length === 0">
+                            {{orders.filterByDsiId === undefined ? 'All' : orders.filterByDsiId }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li ng-repeat="(key, value) in orders.dsiids">
+                                <a href ng-click="orders.filterByDsiId=key">
+                                  <span class="label label-default">{{value[0].designName}}</span> <span class="badge label-default">{{value.length}} entries</span> DSI {{key}}
+                                </a>
+                            </li>
+                        </ul>
+                        <input
+                          type="hidden"
+                          name="filterByDsiId"
+                          ng-model="orders.filterByDsiId"
+                        >
+                    </div>
+
                 </div>
 
                 <div class="panel-body">

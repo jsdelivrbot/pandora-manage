@@ -649,7 +649,7 @@ define([
 
 
 			$stateProvider.state('identify3D.orders', {
-				url: "/orders/pageNum/:pageNum/status/:prescriptionStatus/createdAfter/:createdAfter/createdBefore/:createdBefore/:keyword",
+				url: "/orders/pageNum/:pageNum/filterByDsiId/:filterByDsiId/createdAfter/:createdAfter/createdBefore/:createdBefore/:keyword",
 				views: {
 					'interface': {
 						templateUrl: "common/orders.html",
@@ -667,9 +667,9 @@ define([
 						var createdAfter = $stateParams.createdAfter;
 						var createdBefore = $stateParams.createdBefore;
 
-						var prescriptionStatus = $stateParams.prescriptionStatus;
+						var filterByDsiId = $stateParams.filterByDsiId;
 
-						return Identify3D.get3DOrders(pageNum, currentUserId, keyword, createdAfter, createdBefore, prescriptionStatus);
+						return Identify3D.get3DOrders(pageNum, currentUserId, keyword, createdAfter, createdBefore, filterByDsiId);
 					}],
 
 					devicesData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', 'currentUser', function($q, $rootScope, $state, $stateParams, Identify3D, currentUser){

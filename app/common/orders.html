@@ -15,9 +15,18 @@
                             {{orders.filterByDsiId === undefined ? 'All' : orders.filterByDsiId }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
+
+                            <li >
+                              <a href ng-click="orders.filterByDsiId=''; orders.filterBy()">
+                                Show All
+                              </a>
+                            </li>
+                            <li role="presentation" class="divider"></li>
+
                             <li ng-repeat="(key, value) in orders.dsiids">
-                                <a href ng-click="orders.filterByDsiId=key">
-                                  <span class="label label-default">{{value[0].designName}}</span> <span class="badge label-default">{{value.length}} entries</span> DSI {{key}}
+
+                                <a href ng-click="orders.filterByDsiId=key; orders.filterBy()">
+                                  <span class="label label-default">{{value[0].designName}}</span> <span class="badge label-default">{{value.length - 1}} authorizations</span> DSI {{key}}
                                 </a>
                             </li>
                         </ul>

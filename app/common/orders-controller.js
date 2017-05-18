@@ -9,23 +9,27 @@ define(['lodash'], function (_) {
 
     self.dummyPromise = null;
 
+    self.filterByDsiId = $stateParams.filterByDsiId || undefined;
     self.keyword = $stateParams.keyword;
     self.createdAfter_jsdate = $stateParams.createdAfter ? new Date(parseInt($stateParams.createdAfter)) : null;
     self.createdBefore_jsdate = $stateParams.createdBefore ? new Date(parseInt($stateParams.createdBefore)) : null;
-
-    console.log(ordersData);
 
     self.dsiids = _.groupBy(ordersData, (order) => {
       return order.dsiid
     })
 
-    console.log(self.dsiids);
+    var filteredOrders = ordersData;
+    if(self.filterByDsiId) {
+      filteredOrders = _.filter(ordersData, function(order){
+        return order.dsiid === self.filterByDsiId;
+      });
+    }
 
-    var orders = _.filter(ordersData, function(order){
+    var orders = _.filter(filteredOrders, function(order){
       return order.authorization_id === -1;
     });
 
-    var authorizations = _.filter(ordersData, function(order){
+    var authorizations = _.filter(filteredOrders, function(order){
       return order.authorization_id !== -1;
     });
 
@@ -99,13 +103,13 @@ define(['lodash'], function (_) {
 
     self.filterBy = function() {
       self.noneFound = false;
-      self.orders = null;
+      // self.orders = null;
 
-      var blockingUI = $q.defer();
-      self.myPromise = blockingUI.promise;
+      // var blockingUI = $q.defer();
+      // self.myPromise = blockingUI.promise;
 
-      console.log(self.prescriptionStatus);
-      $state.go(".", {pageNum: 1, keyword: "", createdAfter:0, createdBefore:0, prescriptionStatus: self.prescriptionStatus}, {reload: false});
+      console.log(self.filterByDsiId);
+      $state.go(".", {pageNum: 1, keyword: "", createdAfter:0, createdBefore:0, prescriptionStatus: 'created', filterByDsiId: self.filterByDsiId}, {reload: true});
     }
 
     self.openAfterCal = function($event) {

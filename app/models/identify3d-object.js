@@ -585,7 +585,7 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
              fn: function(item /*{File|FileLikeObject}*/, options) {
                  var parts = item.name.split('.');
                  var ext = parts[parts.length-1];
-                 return ext === 'id3';
+                 return ext === 'apl';
              }
          });
 

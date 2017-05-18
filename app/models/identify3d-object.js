@@ -524,7 +524,7 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
 
       Identify3D.prototype.getDownloadUri = function(fileName, fileData){
         // /api/authorizations/order_id/{authorization_id}/{name.apl}
-        return this.serverUri + 'api/authorizations/' + fileData.authId + '/' + fileData.orderId + '/' + encodeURIComponent(fileName);
+        return this.serverUri + 'api/authorizations/' + fileData.orderId + '/' + fileData.authId + '/' + encodeURIComponent(fileName);
       }
 
 
@@ -567,7 +567,7 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
         var token = this.authToken();
 
         var uploader = new FileUploader({
-                   url: this.serverUri + "api/upload",
+                   url: this.serverUri + "api/orders/order",
                   //  queueLimit: 1,
                    alias: 'file',
                    headers: {

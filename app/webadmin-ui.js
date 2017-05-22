@@ -358,9 +358,10 @@ define([
 			 $urlRouterProvider.otherwise('/');
 
 			$stateProvider.state('gate', {
-				url: "/",
+				url: "/?_dsiid",
 				params: {
-					inactive: {value: false}
+					inactive: {value: false},
+					_dsiid: "",
 				},
 				views: {
 					'container': {

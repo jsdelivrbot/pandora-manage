@@ -451,6 +451,52 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
         return deferred.promise;
       }
 
+      Identify3D.prototype.get3DUsers = function(uiPage){
+
+        var deferred = $q.defer();
+        var serverPage = uiPage - 1;
+
+        var fn = adminAppSettings.apiFunctions.users;
+
+        var req = {
+          method: 'GET',
+          url: this.serverUri + fn.uri,
+          params: {
+            // page: serverPage
+          },
+          headers: {
+            'Accept': 'application/json',
+            // 'Authorization': 'Basic am9obkBqb2huLmNvbTpibGE=',
+            // 'Access-Control-Request-Headers': 'X-Requested-With'
+          }
+        };
+
+        var serverUri = this.serverUri;
+
+
+        $http(req).success(function(data, status, headers, config, statusText){
+
+          if(data.entries){
+
+            data.serverUri = serverUri;
+
+            _.map(data.entries, function(order) {
+              order.imageUrl = data.serverUri + order.imageUrl.substr(1);
+              return order;
+            });
+
+            deferred.resolve(data);
+          } else {
+            deferred.reject(data);
+          }
+
+        }).error(function(data, status, headers, config, statusText){
+          deferred.reject(data);
+        });
+
+        return deferred.promise;
+      }
+
       Identify3D.prototype.doBureauJobEndpoint = function(data, orderId){
 
         var deferred = $q.defer();

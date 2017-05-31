@@ -12,6 +12,9 @@ define([], function () {
 
     self.orderData = orderData;
 
+    console.warn(">>>", orderData)
+
+
     self.isObject = angular.isObject;
     self.isArray = angular.isArray;
 

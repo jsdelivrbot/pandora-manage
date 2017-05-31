@@ -87,6 +87,14 @@ define(['lodash'], function (_) {
 
     var uploader = self.uploader = Identify3D.uploader(/*currentClinic.unique_id*/);
 
+    uploader.onCompleteAll = function(fileItem) {
+      console.log('done');
+      $state.go(".", $stateParams, { reload:true, location:'replace' });
+      // $state.go($state.current, {}, {reload: true});
+      // $state.transitionTo($state.current, $stateParams, {
+      //   reload: true, inherit: false, notify: true
+      // });
+    };
 
   }
 

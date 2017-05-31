@@ -505,7 +505,7 @@ define([
 							resolve: {
 								orderData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-                  var order = _.findWhere(orders, {'order_id': orderNumber, authorization_id: authNumber});
+                  var order = _.findWhere(orders, {'order_id': parseInt(orderNumber, 10), authorization_id: parseInt(authNumber, 10)});
 
 									return angular.extend({}, order);
 								}],
@@ -547,7 +547,8 @@ define([
 							resolve: {
 								orderData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-									var order = _.findWhere(orders, {'order_id': orderNumber, authorization_id: authNumber});
+									var order = _.findWhere(orders, {'order_id': parseInt(orderNumber, 10), authorization_id: parseInt(authNumber, 10)});
+									// var order = _.findWhere(orders, {'order_id': orderNumber, authorization_id: authNumber});
 
 									return angular.extend({}, order);
 								}],
@@ -590,7 +591,7 @@ define([
 
 						var prescriptionStatus = $stateParams.prescriptionStatus;
 
-						return Identify3D.get3DOrders(pageNum, currentUserId, keyword, createdAfter, createdBefore, prescriptionStatus);
+						return Identify3D.get3DUsers(pageNum, currentUserId, keyword, createdAfter, createdBefore, prescriptionStatus);
 					}],
 
 					devicesData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', 'currentUser', function($q, $rootScope, $state, $stateParams, Identify3D, currentUser){

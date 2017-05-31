@@ -75,9 +75,9 @@
                                 </td>
                                 <td>{{order.userID}}</td>
                                 <td>{{order.companyName}}</td>
-                                <td>{{order.quantityOrdered ? order.quantityOrdered : '-'}}</td>
+                                <td>{{order.licensingParameters.quantity ? order.licensingParameters.quantity : '-'}}</td>
                                 <td>{{order.quantityAuthorized ? order.quantityAuthorized : '-'}}</td>
-                                <td>{{order.dateCreated}}</td>
+                                <td>{{order.dateCreated | date:'medium' }}</td>
                                 <!-- <td>
                                   <span ng-if="order.status === 'New'" class="label label-default">{{order.status}}</span>
                                   <span ng-if="order.status === 'Idle'" class="label label-primary">{{order.status}}</span>
@@ -95,7 +95,8 @@
                                 <td>
                                   <button ng-show="order.status !== 'Cancelled'" ui-sref=".assign({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button>
                                   <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button> -->
-                                  <button ui-sref=".viewReport({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID3 Trace</button>
+                                  <button ui-sref=".viewIDInfo({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID Info</button>
+                                  <!-- <a href="{{order.IdentifierAuthorizedPolicyList.manage_url + '/#/?_dsiid=' + order.dsiid}}" target="manage_dsi" type="button" class="btn btn-xs btn-primary">Designs <i class="fa fa-external-link"></i></a> -->
 
                                   <!-- <button ui-sref=".?({orderNumber: order.order_id})"  type="button" class="btn btn-sm btn-default">ID Info</button> -->
                                 </td>
@@ -124,9 +125,13 @@
 
                                           <tr ng-repeat="order in orders.groupedAuthorizations[order.order_id]">
                                               <td>{{order.authorization_id}}</td>
-                                              <td>{{order.licensingParameters.licensee}}</td>
+                                              <td>
+                                                {{order.licensingParameters.licensee.companyName}}
+                                                <!-- {{order.licensingParameters.licensee.publicKeySN}} -->
+                                                <!-- {{order.licensingParameters.licensee.keyRoleSN}} -->
+                                              </td>
                                               <td>{{order.licensingParameters.quantity ? order.licensingParameters.quantity : '-'}}</td>
-                                              <td>{{order.dateCreated}}</td>
+                                              <td>{{order.dateCreated | date:'medium' }}</td>
                                               <!-- <td>
                                                 <span ng-if="order.status === 'New'" class="label label-default">{{order.status}}</span>
                                                 <span ng-if="order.status === 'Idle'" class="label label-primary">{{order.status}}</span>
@@ -143,7 +148,7 @@
                                               </td> -->
                                               <td>
                                                 <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-default">ID3 Trace</button> -->
-                                                <button ui-sref=".viewIDInfo({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID Info</button>
+                                                <button ui-sref=".viewReport({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID3 Trace</button>
 
                                               </td>
                                             </tr>

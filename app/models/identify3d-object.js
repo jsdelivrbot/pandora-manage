@@ -103,7 +103,7 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
           method: 'POST',
           url: this.serverUri + fn.uri,
           data:  {
-            "command" : "login",
+            // "command" : "login",
             "user" : loginform.username,
             "pass" : loginform.password,
           },
@@ -146,10 +146,10 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
 
         var deferred = $q.defer();
 
-        var fn = adminAppSettings.apiFunctions.login;
+        var fn = adminAppSettings.apiFunctions.register;
 
         var data = angular.extend({
-          "command" : "register"
+          // "command" : "register"
         }, form);
 
         // "firstName" : "Test",

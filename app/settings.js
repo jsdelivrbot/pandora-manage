@@ -7,7 +7,8 @@ define({
   apiEndpoint: 'http://demo2.identify3d.com:3535/', // http://demo2.identify3d.com:3535/
   apiFunctions: {
     dashboard: {uri: "api/dashboard" },
-    login: {uri: "api/login" },
+    login: {uri: "api/login/login" },
+    register: {uri: "api/login/register" },
     ping: {uri: "api/ping" },
     stats: {uri: "api/devices/device" },
     orders: {uri: "api/orders/order" },

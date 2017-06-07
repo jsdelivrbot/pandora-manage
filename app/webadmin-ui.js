@@ -461,7 +461,7 @@ define([
 							resolve: {
 								deviceData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-									var device = _.findWhere(devices, function(device) {
+									var device = _.find(devices, function(device) {
 										return device.manufacturingParameters.deviceID === deviceId;
 									});
 

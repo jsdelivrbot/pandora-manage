@@ -12,6 +12,8 @@ define([], function () {
 
     self.orderData = orderData;
 
+    console.log(self.orderData.manufacturingParameters)
+
     self.isObject = angular.isObject;
     self.isArray = angular.isArray;
 

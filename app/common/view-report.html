@@ -23,38 +23,9 @@
                                  <td>{{viewReport.orderData.order_id}}</td>
                               </tr>
 
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
-
-
-
-          <div class="page-header">
-              <h4><i class="fa fa-info"></i> Manufacturing Parameters</h4>
-          </div>
-
-          <div class="row">
-              <div class="col-md-12">
-
-                  <div ng-init="manufacturingParametersFound= (viewReport.orderData.manufacturingParameters && viewReport.orderData.manufacturingParameters.machineManufacturer && viewReport.orderData.manufacturingParameters.machineModel )" class="bs-example" data-example-id="simple-table">
-
-                    <div ng-if="!manufacturingParametersFound" class="alert alert-danger" role="alert">
-                        <p>No manufacturing parameters found.</p>
-                    </div>
-
-                      <table ng-if="manufacturingParametersFound" class="table table-bordered table-striped">
-                          <thead>
-                             <tr>
-                                 <th>Manufacturer</th>
-                                 <th>Model</th>
-                             </tr>
-                         </thead>
-                          <tbody>
                               <tr>
-                                 <td>{{viewReport.orderData.manufacturingParameters.machineManufacturer}}</td>
-                                 <td>{{viewReport.orderData.manufacturingParameters.machineModel}}</td>
+                                 <td>AUTHORIZATION #</td>
+                                 <td>{{viewReport.orderData.authorization_id}}</td>
                               </tr>
 
                           </tbody>
@@ -63,8 +34,9 @@
               </div>
           </div>
 
+
           <div class="page-header">
-              <h4><i class="fa fa-info"></i> Licensing Parameters</h4>
+              <h4><i class="fa fa-info"></i> Report</h4>
           </div>
 
           <div class="row">
@@ -72,8 +44,8 @@
 
                   <div class="bs-example" data-example-id="simple-table">
 
-                    <div class="alert alert-danger" role="alert">
-                        <p>No licensing parameters found.</p>
+                    <div class="alert alert-warning" role="alert">
+                        <p>No report found.</p>
                     </div>
 
                       <!-- <table class="table table-bordered table-striped">
@@ -94,6 +66,8 @@
                   </div>
               </div>
           </div>
+
+        </div>
 
         </div>
 

@@ -50,10 +50,35 @@
                                     </td>
                                 </tr>
 
-                                <tr ng-if="deviceInfo.device.manufacturingParameters.url && deviceInfo.device.manufacturingParameters.url.length > 0">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="page-header">
+                <h4><i class="fa fa-info"></i> Signing Key Info</h4>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="bs-example" data-example-id="simple-table">
+                        <table class="table table-bordered">
+                            <tbody>
+
+                                <tr ng-repeat="(key, value) in deviceInfo.device.signingKeyInfo" ng-show="!!value">
+                                    <th scope="row">{{key}}</th>
+                                    <td>
+                                        {{value}}
+                                    </td>
+                                </tr>
+
+                                <tr ng-if="deviceInfo.device.signingKeyInfo.url && deviceInfo.device.signingKeyInfo.url.length > 0">
                                     <th scope="row">Console</th>
                                     <td>
-                                        <a target="_blank" href="{{deviceInfo.device.manufacturingParameters.url}}">{{deviceInfo.device.manufacturingParameters.url}}</a>
+                                        <a target="_blank" href="{{deviceInfo.device.signingKeyInfo.url}}">{{deviceInfo.device.signingKeyInfo.url}}</a>
                                     </td>
                                 </tr>
 
@@ -77,6 +102,31 @@
                     </div>
                 </div>
             </div>
+
+            <div class="page-header">
+                <h4><i class="fa fa-info"></i> Encryption Key Info</h4>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="bs-example" data-example-id="simple-table">
+                        <table class="table table-bordered">
+                            <tbody>
+
+                                <tr ng-repeat="(key, value) in deviceInfo.device.encryptionKeyInfo" ng-show="!!value">
+                                    <th scope="row">{{key}}</th>
+                                    <td>
+                                        {{value}}
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
 

@@ -17,7 +17,10 @@ define([], function () {
     self.selectedPrinter = null;
 
     self.orderForm = angular.extend({}, {
-      DesignRules: orderFormData
+      DesignRules: orderFormData,
+      BusinessRules: {
+          quantityAuthorized: orderData.quantityAuthorized,
+      }
     });
 
     function broadcastSliderRecalc() {

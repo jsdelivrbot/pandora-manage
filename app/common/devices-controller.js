@@ -16,6 +16,9 @@ define([], function () {
     self.serverUri = devicesData.serverUri;
 
     self.printers = devicesData;
+
+    console.log(">>", self.printers)
+
     self.noneFound = 1// self.printers.length === 0;
 
     self.prescriptionStatus = $stateParams.prescriptionStatus;

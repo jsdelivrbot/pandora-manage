@@ -299,7 +299,8 @@
                                 <label for="exampleInputEmail1">Expiration Date</label>
 
                                 <p class="input-group input-group-md">
-                                    <input ng-disabled="assignOrder.orderForm.BusinessRules.expirationDate" type="text" class="form-control" datepicker-popup="MM / dd / yyyy" datepicker-mode="year" ng-model="assignOrder.orderForm.BusinessRules.expirationDate" name="expirationDate" is-open="assignOrder.isDOBCalOpen" placeholder="Expiration Date" close-text="Close"
+                                  <!-- ng-disabled="assignOrder.orderForm.BusinessRules.expirationDate" -->
+                                    <input  type="text" class="form-control" datepicker-popup="MM / dd / yyyy" datepicker-mode="year" ng-model="assignOrder.orderForm.BusinessRules.expirationDate" name="expirationDate" is-open="assignOrder.isDOBCalOpen" placeholder="Expiration Date" close-text="Close"
                                     />
                                     <span class="input-group-btn">
                                       <button type="button" class="btn btn-default" ng-click="assignOrder.openDOBCal($event)"><i class="glyphicon glyphicon-calendar"></i></button>

@@ -605,12 +605,7 @@ define([
 			$stateProvider.state('identify3D.users.editUser', {
 				url: "/edit-user/:userId",
 				resolve: {
-					modalInstance: ['$stateParams', '$aside', 'ordersData', function($stateParams, $aside, ordersData){
-
-
-						var authNumber = $stateParams.authNumber;
-						var orderNumber = $stateParams.orderNumber;
-						var orders = ordersData;
+					modalInstance: ['$stateParams', '$aside', 'usersData', function($stateParams, $aside, usersData){
 
 						var userId = $stateParams.userId;
 
@@ -623,19 +618,14 @@ define([
 							controller: 'EditUserController as editUser',
 							resolve: {
 								userData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
+									var user = _.find(usersData, function(u) {
+										return u.user === userId;
+									});
 
-									// var order = _.findWhere(orders, {'order_id': orderNumber, authorization_id: authNumber});
-
-									if(userId === -1) {
-										return null;
-									}
-									return angular.extend({}, {});
+									return angular.extend({
+										isNew: !user,
+									}, user);
 								}],
-								// reportData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
-								//   var order = _.findWhere(orders, {'orderNumber': orderNumber});
-								//   var designId = order.designId;
-								//   return Identify3D.get3DReport(0, designId);
-								// }]
 							}
 						});
 

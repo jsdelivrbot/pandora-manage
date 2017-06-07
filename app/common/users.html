@@ -16,7 +16,7 @@
                 <div class="panel-heading clearfix">
                     <h3 class="panel-title pull-left"><i class="fa fa-1x fa-users"></i> User Management</h3>
 
-                    <button  ui-sref=".editUser({userId: -1})"  type="button" class="pull-right btn btn-sm btn-success">Add New User</button>
+                    <button ui-sref=".editUser({userId: '-'})"  type="button" class="pull-right btn btn-sm btn-success">Add New User</button>
 
                 </div>
 
@@ -55,8 +55,8 @@
                               <!-- <span class="label label-success">admin</span> -->
                             </td>
                             <td>
-                              <button ui-sref=".editUser({userId: 1})"  type="button" class="btn btn-sm btn-primary">Edit</button>
-                              <button ng-if="users.currentUser.username !== user.user" ng-click="users.deleteUser(1)" type="button" class="btn btn-sm btn-danger">Delete</button>
+                              <button ui-sref=".editUser({userId: user.user})"  type="button" class="btn btn-sm btn-primary">Edit</button>
+                              <button ng-if="users.currentUser.username !== user.user" ng-click="users.deleteUser(user.user)" type="button" class="btn btn-sm btn-danger">Delete</button>
                             </td>
                           </tr>
                       </tbody>

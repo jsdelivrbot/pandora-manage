@@ -172,7 +172,90 @@ define(['angular', 'settings', 'lodash', 'jquery'], function (_angular, adminApp
 
         $http(req).success(function(data, status, headers, config, statusText){
 
-          if(data.user){
+          if(status === 200){
+            deferred.resolve(data);
+          } else {
+            deferred.reject({
+              error: 'Server Error'
+            });
+          }
+
+        }).error(function(data, status, headers, config, statusText){
+          deferred.reject({
+            error: 'Server Error'
+          });
+        });
+
+        return deferred.promise;
+      }
+
+      Identify3D.prototype.doBureauUserUpdate = function(form){
+
+        var deferred = $q.defer();
+
+        var fn = adminAppSettings.apiFunctions.userUpdate;
+
+        var data = angular.extend({
+          // "command" : "register"
+        }, form);
+
+        // "firstName" : "Test",
+        // "lastName" : "User",
+        // "email" : "support@identify3d.com",
+        // "company" : "Identify3D",
+        // address : "4 Joost",
+        // city : "San Francisco",
+        // "state" : "CA",
+        // "zip" : "94131"
+
+        var req = {
+          method: 'POST',
+          url: this.serverUri + fn.uri,
+          data:  data,
+          headers: {
+            'Accept': 'application/json',
+          }
+        };
+
+        $http(req).success(function(data, status, headers, config, statusText){
+
+          if(status === 200){
+            deferred.resolve(data);
+          } else {
+            deferred.reject({
+              error: 'Server Error'
+            });
+          }
+
+        }).error(function(data, status, headers, config, statusText){
+          deferred.reject({
+            error: 'Server Error'
+          });
+        });
+
+        return deferred.promise;
+      }
+
+      Identify3D.prototype.doBureauUserDelete = function(form){
+
+        var deferred = $q.defer();
+
+        var fn = adminAppSettings.apiFunctions.userDelete;
+
+        var data = angular.extend({
+        }, form);
+
+        var req = {
+          method: 'POST',
+          url: this.serverUri + fn.uri,
+          data:  data,
+          headers: {
+            'Accept': 'application/json',
+          }
+        };
+
+        $http(req).success(function(data, status, headers, config, statusText){
+          if(status === 200){
             deferred.resolve(data);
           } else {
             deferred.reject(data);

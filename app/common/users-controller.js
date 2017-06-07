@@ -98,9 +98,15 @@ define([], function () {
       confirmationDialogService('md', 'Are you sure you want to delete user?', true, false)
       .result
       .then(function (userResponse) {
-        // console.log("cancel job", self.order.designId);
+        console.log("delete", userId);
 
-        // return cancelJob(self.order.designId);
+        return Identify3D.doBureauUserDelete({
+          user: userId,
+        }).then(function(data){
+
+          $state.go(".", $stateParams, {reload: true});
+
+        });
 
       }, function (userResponse) {
         //this should never happen i.e cancelButton=false

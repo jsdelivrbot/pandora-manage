@@ -15,24 +15,191 @@
               <h4><i class="fa fa-user"></i> User Details</h4>
           </div>
 
+
           <div class="row">
-              <div class="col-md-12">
+            <div class="col-lg-6">
 
-                  <div class="bs-example" data-example-id="simple-table">
-
-                      <div class="alert alert-danger" role="alert">
-                          <p>No user found.</p>
-                      </div>
+              <fieldset>
+                <div class="form-group" ng-class="{ 'has-error' : Lform.firstName.$invalid}">
+                  <label for="firstName">First Name*</label>
+                  <input autofocus ng-model="editUser.userData.firstName" required name="firstName" type="text" class="form-control input-md" placeholder="First Name">
+                  <br/>
+                  <div ng-show="Lform.firstName.$dirty && Lform.firstName.$invalid" class="alert alert-danger" role="alert">
+                    <p ng-if="Lform.firstName.$error.required">Enter your first name.</p>
                   </div>
-              </div>
+
+                </div>
+
+              </fieldset>
+
+            </div>
+
+            <div class="col-lg-6">
+
+              <fieldset>
+
+                <div class="form-group" ng-class="{ 'has-error' : Lform.lastName.$invalid}">
+                  <label for="lastName">Last Name*</label>
+                  <input ng-model="editUser.userData.lastName" required name="lastName" type="text" class="form-control input-md" placeholder="Last Name">
+                  <br/>
+                  <div ng-show="Lform.lastName.$dirty && Lform.lastName.$invalid" class="alert alert-danger" role="alert">
+                    <p ng-if="Lform.lastName.$error.required">Enter your last name.</p>
+                  </div>
+                </div>
+
+              </fieldset>
+
+            </div>
+
           </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+
+              <fieldset>
+                <div class="form-group" ng-class="{ 'has-error' : Lform.company.$invalid}">
+                  <label for="company">Company*</label>
+                  <input ng-model="editUser.userData.company" required name="company" type="text" class="form-control input-md" placeholder="Company">
+                  <br/>
+                  <div ng-show="Lform.company.$dirty && Lform.company.$invalid" class="alert alert-danger" role="alert">
+                    <p ng-if="Lform.company.$error.required">Enter company name.</p>
+                  </div>
+                </div>
+
+              </fieldset>
+
+            </div>
+
+            <div class="col-lg-6">
+
+              <fieldset>
+
+                <div class="form-group" ng-class="{ 'has-error' : Lform.email.$invalid}">
+                  <label for="email">Email*</label>
+                  <input ng-model="editUser.userData.email" required name="email" type="email" class="form-control input-md" placeholder="Email">
+                  <br/>
+                  <div ng-show="Lform.email.$dirty && Lform.email.$invalid" class="alert alert-danger" role="alert">
+                    <p ng-if="Lform.email.$error.required">Enter email.</p>
+                    <p ng-if="Lform.email.$error.email">Invalid email.</p>
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-lg-5">
+
+              <fieldset>
+                <div class="form-group" ng-class="{ 'has-error' : Lform.address.$invalid}">
+                  <label for="address">Address*</label>
+                  <input ng-model="editUser.userData.address" required name="address" type="text" class="form-control input-md" placeholder="Address">
+                  <br/>
+                  <div ng-show="Lform.address.$dirty && Lform.address.$invalid" class="alert alert-danger" role="alert">
+                    <p ng-if="Lform.address.$error.required">Enter address.</p>
+                  </div>
+                </div>
+
+              </fieldset>
+
+            </div>
+
+            <div class="col-lg-3">
+
+              <fieldset>
+
+                <div class="form-group" ng-class="{ 'has-error' : Lform.city.$invalid}">
+                  <label for="city">City*</label>
+                  <input ng-model="editUser.userData.city" required name="city" type="text" class="form-control input-md" placeholder="City">
+                  <br/>
+                  <div ng-show="Lform.city.$dirty && Lform.city.$invalid" class="alert alert-danger" role="alert">
+                    <p ng-if="Lform.city.$error.required">Enter city.</p>
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+
+            <div class="col-lg-2">
+
+              <fieldset>
+
+                <div class="form-group" ng-class="{ 'has-error' : Lform.state.$invalid}">
+                  <label for="state">State*</label>
+                  <input ng-model="editUser.userData.state" required name="state" type="text" class="form-control input-md" placeholder="State">
+                  <br/>
+                  <div ng-show="Lform.state.$dirty && Lform.state.$invalid" class="alert alert-danger" role="alert">
+                    <p ng-if="Lform.state.$error.required">Enter state.</p>
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+
+            <div class="col-lg-2">
+
+              <fieldset>
+
+                <div class="form-group" ng-class="{ 'has-error' : Lform.zip.$invalid}">
+                  <label for="zip">Zip*</label>
+                  <input ng-model="editUser.userData.zip" required name="zip" type="text" class="form-control input-md" placeholder="Zip">
+                  <br/>
+                  <div ng-show="Lform.zip.$dirty && Lform.zip.$invalid" class="alert alert-danger" role="alert">
+                    <p ng-if="Lform.zip.$error.required">Enter zip.</p>
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+
+          </div>
+
+          <fieldset>
+            <div class="form-group" ng-class="{ 'has-error' : Lform.user.$invalid}">
+              <label for="user">Username*</label>
+
+              <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input ng-disabled="editUser.isEditing" autofocus ng-model="editUser.userData.user" required name="user" type="text" class="form-control input-md" placeholder="Username">
+
+              </div>
+              <br/>
+              <div ng-show="Lform.user.$dirty && Lform.username.$invalid" class="alert alert-danger" role="alert">
+                <p ng-if="Lform.user.$error.required">Enter a username.</p>
+              </div>
+
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : Lform.pass.$invalid}">
+              <label for="pass">Password*</label>
+
+              <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input ng-model="editUser.userData.pass" required name="pass" type="password" class="form-control input-md" placeholder="Password">
+              </div>
+              <br/>
+              <div ng-show="Lform.pass.$dirty && Lform.pass.$invalid" class="alert alert-danger" role="alert">
+                <p ng-if="Lform.pass.$error.required">Enter a password.</p>
+              </div>
+
+            </div>
+
+          </fieldset>
+
+
+
+
 
         </div>
 
     </div>
 
     <div class="modal-footer">
-        <button type="button" ui-sref="^" class="btn btn-md btn-success">Save</button>
+        <button type="submit" class="btn btn-md btn-success">Save</button>
     </div>
 
 </form>

@@ -8,12 +8,14 @@ define({
   apiFunctions: {
     // dashboard: {uri: "api/dashboard" },
     login: {uri: "api/login/login" },
-    register: {uri: "api/login/register" },
     ping: {uri: "api/ping" },
     stats: {uri: "api/dashboard" },
     orders: {uri: "api/orders/order" },
     devices: {uri: "api/devices/device" },
     report: {uri: "api/report" },
     users: {uri: "api/login/users" },
+    userDelete: {uri: "api/login/delete" },
+    userUpdate: {uri: "api/login/edit" },
+    register: {uri: "api/login/register" },
   }
 });

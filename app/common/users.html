@@ -1,4 +1,4 @@
-<div cg-busy="{promise:orders.myPromise, message:''}" class="container-fluid">
+<div cg-busy="{promise:users.myPromise, message:''}" class="container-fluid">
 
     <div class="row">
 
@@ -25,55 +25,37 @@
                     <br/>
 
                     <div ng-if="users.noneFound" class="alert alert-danger" role="alert">
-                        <p>No orders found.</p>
+                        <p>No users found.</p>
                     </div>
 
-                    <table ng-if="users.orders.length > 0" fixed-table-headers class="table table-bordered table-striped">
+                    <table ng-if="users.users.length > 0" fixed-table-headers class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>FULL NAME</th>
-                                <th>EMAIL <span class="label label-default">username</span></th>
+                                <th>USERNAME</th>
+                                <th>EMAIL</th>
                                 <th>ROLE</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>Chris Adkins</td>
+                          <tr ng-repeat="user in users.users">
                             <td>
-                                <a href popover-trigger="mouseenter" popover-placement="right" popover="{{order.description}}">chris@identify3d.com<a/>
-                            </td>
-                            <td><span class="label label-default">user</span></td>
-                            <td>
-                              <button ui-sref=".editUser({userId: 1})"  type="button" class="btn btn-sm btn-primary">Edit</button>
-                              <button ng-click="users.deleteUser(1)" type="button" class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Bruce Bernstein</td>
-                            <td>
-                                <a href popover-trigger="mouseenter" popover-placement="right" popover="{{order.description}}">bruce@identify3d.com<a/>
+                              {{user.firstName}} {{user.lastName}}
                             </td>
                             <td>
-                              <span class="label label-success">admin</span>
+                              <span class="label label-primary">{{user.user}}</span>
+                              <span ng-if="users.currentUser.username === user.user" class="label label-default">you</span>
+                            </td>
+                            <td>
+                                <a href="mailto:{{user.email}}">{{user.email}}<a/>
+                            </td>
+                            <td>
+                              <span class="label label-default">{{user.role}}</span>
+                              <!-- <span class="label label-success">admin</span> -->
                             </td>
                             <td>
                               <button ui-sref=".editUser({userId: 1})"  type="button" class="btn btn-sm btn-primary">Edit</button>
-                              <button ng-click="users.deleteUser(1)" type="button" class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Joe Inkenbrandt</td>
-                            <td>
-                                <a href popover-trigger="mouseenter" popover-placement="right" popover="{{order.description}}">joe@identify3d.com<a/>
-                            </td>
-                            <td>
-                              <span class="label label-success">admin</span>
-                              <span class="label label-primary">you</span>
-                            </td>
-                            <td>
-                              <button ui-sref=".editUser({userId: 1})"  type="button" class="btn btn-sm btn-primary">Edit</button>
-                              <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Edit</button> -->
                               <button ng-click="users.deleteUser(1)" type="button" class="btn btn-sm btn-danger">Delete</button>
                             </td>
                           </tr>

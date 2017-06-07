@@ -579,23 +579,23 @@ define([
 					}
 				},
 				resolve: {
-					ordersData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', 'currentUser', function($q, $rootScope, $state, $stateParams, Identify3D, currentUser){
+					usersData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', 'currentUser', function($q, $rootScope, $state, $stateParams, Identify3D, currentUser){
 
-						var keyword = $stateParams.keyword;
+						// var keyword = $stateParams.keyword;
+						//
+						// var currentUserId = currentUser.unique_id;
+						// var pageNum = $stateParams.pageNum;
+						//
+						// var createdAfter = $stateParams.createdAfter;
+						// var createdBefore = $stateParams.createdBefore;
+						//
+						// var prescriptionStatus = $stateParams.prescriptionStatus;
 
-						var currentUserId = currentUser.unique_id;
-						var pageNum = $stateParams.pageNum;
-
-						var createdAfter = $stateParams.createdAfter;
-						var createdBefore = $stateParams.createdBefore;
-
-						var prescriptionStatus = $stateParams.prescriptionStatus;
-
-						return Identify3D.get3DUsers(pageNum, currentUserId, keyword, createdAfter, createdBefore, prescriptionStatus);
+						return Identify3D.get3DUsers();
 					}],
 
-					devicesData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', 'currentUser', function($q, $rootScope, $state, $stateParams, Identify3D, currentUser){
-						return Identify3D.get3DDevices();
+					currentUser: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', 'currentUser', function($q, $rootScope, $state, $stateParams, Identify3D, currentUser){
+						return currentUser;
 					}]
 
 				}

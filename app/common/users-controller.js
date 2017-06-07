@@ -3,41 +3,22 @@
 
 define([], function () {
 
-  function UsersController($scope, $stateParams, $state, $modal, $aside, $q, $http, confirmationDialogService, Identify3D, ordersData){
+  function UsersController($scope, $stateParams, $state, $modal, $aside, $q, $http, confirmationDialogService, Identify3D, usersData, currentUser){
 
     var self = this;
 
     self.dummyPromise = null;
 
-    self.keyword = $stateParams.keyword;
-    self.createdAfter_jsdate = $stateParams.createdAfter ? new Date(parseInt($stateParams.createdAfter)) : null;
-    self.createdBefore_jsdate = $stateParams.createdBefore ? new Date(parseInt($stateParams.createdBefore)) : null;
+    self.currentUser = currentUser;
+    self.users = usersData;
 
-    var orders = _.filter(ordersData, function(order){
-      return order.authorization_id === -1;
-    });
+    self.noneFound = self.users.length === 0;
 
-    var authorizations = _.filter(ordersData, function(order){
-      return order.authorization_id !== -1;
-    });
-
-
-    var groupedAuthorizations = _.groupBy(authorizations, function(authorizationRecord){
-      return authorizationRecord.order_id;
-    });
-
-    console.log(groupedAuthorizations)
-
-    self.orders = orders;
-    self.groupedAuthorizations = groupedAuthorizations;
-
-    self.noneFound = self.orders.length === 0;
-
-    self.totalFound = 1 //,ordersData.total_items || 0;
+    self.totalFound = 1 //,usersData.total_items || 0;
 
     self.pager = {
-      totalItems: ordersData.total_pages * ordersData.max_items_per_page,
-      itemPerPage: ordersData.max_items_per_page,
+      totalItems: usersData.total_pages * usersData.max_items_per_page,
+      itemPerPage: usersData.max_items_per_page,
       currentPage: $stateParams.pageNum,
       maxSize: 100
     };
@@ -128,5 +109,5 @@ define([], function () {
 
   }
 
-  return {'UsersController': ['$scope', '$stateParams', '$state', '$modal', '$aside', '$q', '$http', 'confirmationDialogService', 'Identify3DObject', 'ordersData', UsersController]};
+  return {'UsersController': ['$scope', '$stateParams', '$state', '$modal', '$aside', '$q', '$http', 'confirmationDialogService', 'Identify3DObject', 'usersData', 'currentUser', UsersController]};
 });

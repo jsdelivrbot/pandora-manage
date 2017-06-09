@@ -96,7 +96,7 @@
                                   <button ng-show="order.status !== 'Cancelled'" ui-sref=".assign({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button>
                                   <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button> -->
                                   <button ui-sref=".viewIDInfo({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID Info</button>
-                                  <a href="{{order.damUrl + '#/?_dsiid=' + order.dsiid}}" target="dam_dsi"><button type="button" class="btn btn-sm btn-default">DAM  <i class="fa fa-external-link"></i></button></a>
+                                  <a href="{{order.damUrl}}Designs/fa2a2cc6-a63f-496d-afa6-823bea2559c6.dsi" download><button type="button" class="btn btn-sm btn-default">DAM  <i class="fa fa-download"></i></button></a>
 
                                   <!-- <button ui-sref=".?({orderNumber: order.order_id})"  type="button" class="btn btn-sm btn-default">ID Info</button> -->
                                 </td>

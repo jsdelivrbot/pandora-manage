@@ -274,7 +274,7 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li ng-repeat="printer in assignOrder.printers">
-                                            <a href ng-click="assignOrder.selectedPrinter=printer"><span class="label label-default">{{printer.manufacturingParameters.family}}</span> <span class="label label-info">{{printer.manufacturingParameters.machineType}}</span> {{printer.manufacturingParameters.deviceName}}</a>
+                                            <a href ng-click="assignOrder.selectedPrinter=printer; assignOrder.orderForm.BusinessRules.authorizedUser=null;"><span class="label label-default">{{printer.manufacturingParameters.family}}</span> <span class="label label-info">{{printer.manufacturingParameters.machineType}}</span> {{printer.manufacturingParameters.deviceName}}</a>
                                         </li>
 
                                     </ul>
@@ -315,15 +315,36 @@
 
                     <div class="row">
 
-                        <div class="col-md-10">
+                        <!-- <div class="col-md-12">
 
                             <div class="form-group" ng-class="{ 'has-error' : Lform.authorizedUser.$invalid}">
                                 <label for="exampleInputEmail1">Authorized User</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Authorized User" name="authorizedUser" ng-model="assignOrder.orderForm.BusinessRules.authorizedUser">
                             </div>
 
-                        </div>
+                        </div> -->
 
+
+                      <div class="col-md-12">
+
+                          <div class="form-group required">
+                              <label for="exampleInputEmail1">Authorized User*</label>
+
+                              <div class="btn-group input-group" dropdown>
+                                  <button type="button" class="btn btn-default dropdown-toggle" ng-class="{ 'btn-danger' : Lform.authorizedUser.$invalid}" dropdown-toggle ng-disabled="!assignOrder.selectedPrinter">
+                                      {{assignOrder.orderForm.BusinessRules.authorizedUser ? assignOrder.orderForm.BusinessRules.authorizedUser : 'Select User' }} <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu">
+                                      <li ng-repeat="user in assignOrder.selectedPrinter.users">
+                                          <a href ng-click="assignOrder.orderForm.BusinessRules.authorizedUser=user">{{user}}</a>
+                                      </li>
+
+                                  </ul>
+                                  <input type="hidden" name="authorizedUser" required ng-model="assignOrder.orderForm.BusinessRules.authorizedUser">
+                              </div>
+                          </div>
+
+                      </div>
                     </div>
 
 

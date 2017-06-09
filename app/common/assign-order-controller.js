@@ -14,12 +14,17 @@ define([], function () {
     self.order = angular.extend({}, orderData);
     self.printers = devicesData;
 
+    console.log(self.order)
+
     self.selectedPrinter = null;
+
+    var quantityOrdered = Math.max(0, orderData.licensingParameters.quantity - orderData.quantityAuthorized);
 
     self.orderForm = angular.extend({}, {
       DesignRules: orderFormData,
       BusinessRules: {
-          quantityAuthorized: orderData.quantityAuthorized,
+          quantityAuthorized: quantityOrdered,
+          expirationDate: orderData.licensingParameters.expirationDate,
       }
     });
 

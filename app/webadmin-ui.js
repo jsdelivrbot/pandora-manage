@@ -313,10 +313,10 @@ define([
 		module.run(['$rootScope', '$state', '$stateParams', '$location', '$interval', '$q', '$urlRouter',
 			 function ($rootScope, $state, $stateParams, $location, $interval, $q, $urlRouter) {
 
-					$rootScope.$on('$stateChangeSuccess',function(x, y, z, os){
-						if(!$state.includes(os) || $state.is(os))
-								$("html, body").animate({ scrollTop: 0 }, 200);
-					});
+					// $rootScope.$on('$stateChangeSuccess',function(x, y, z, os){
+					// 	if(!$state.includes(os) || $state.is(os))
+					// 			$("html, body").animate({ scrollTop: 0 }, 200);
+					// });
 
 				}
 		]);
@@ -505,12 +505,12 @@ define([
 							resolve: {
 								orderData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-                  var order = _.findWhere(orders, {'order_id': parseInt(orderNumber, 10), authorization_id: parseInt(authNumber, 10)});
+                  var order = _.find(orders, {'order_id': parseInt(orderNumber, 10), authorization_id: parseInt(authNumber, 10)});
 
 									return angular.extend({}, order);
 								}],
 								// reportData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
-                //   var order = _.findWhere(orders, {'orderNumber': orderNumber});
+                //   var order = _.find(orders, {'orderNumber': orderNumber});
                 //   var designId = order.designId;
                 //   return Identify3D.get3DReport(0, designId);
 								// }]
@@ -536,7 +536,6 @@ define([
 						var authNumber = $stateParams.authNumber;
 						var orderNumber = $stateParams.orderNumber;
 						var orders = ordersData;
-
 						var modalInstance = $aside.open({
 							templateUrl: 'common/view-id-info.html',
 							placement: 'right',
@@ -547,13 +546,14 @@ define([
 							resolve: {
 								orderData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-									var order = _.findWhere(orders, {'order_id': parseInt(orderNumber, 10), authorization_id: parseInt(authNumber, 10)});
-									// var order = _.findWhere(orders, {'order_id': orderNumber, authorization_id: authNumber});
+									var order = _.find(orders, {'order_id': parseInt(orderNumber, 10), authorization_id: parseInt(authNumber, 10)});
+
+									// var order = _.find(orders, {'order_id': orderNumber, authorization_id: authNumber});
 
 									return angular.extend({}, order);
 								}],
 								// reportData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
-								//   var order = _.findWhere(orders, {'orderNumber': orderNumber});
+								//   var order = _.find(orders, {'orderNumber': orderNumber});
 								//   var designId = order.designId;
 								//   return Identify3D.get3DReport(0, designId);
 								// }]
@@ -641,7 +641,7 @@ define([
 
 
 			$stateProvider.state('identify3D.orders', {
-				url: "/orders/pageNum/:pageNum/filterByDsiId/:filterByDsiId/createdAfter/:createdAfter/createdBefore/:createdBefore/:keyword",
+				url: "/orders/pageNum/:pageNum/sortBy/:sortBy/filterByDsiId/:filterByDsiId/filterByCompanyName/:filterByCompanyName/filterByCreator/:filterByCreator/createdAfter/:createdAfter/createdBefore/:createdBefore/:keyword",
 				views: {
 					'interface': {
 						templateUrl: "common/orders.html",
@@ -660,8 +660,10 @@ define([
 						var createdBefore = $stateParams.createdBefore;
 
 						var filterByDsiId = $stateParams.filterByDsiId;
+						var filterByCompanyName = $stateParams.filterByCompanyName;
+						var filterByCreator = $stateParams.filterByCreator;
 
-						return Identify3D.get3DOrders(pageNum, currentUserId, keyword, createdAfter, createdBefore, filterByDsiId);
+						return Identify3D.get3DOrders(pageNum, currentUserId, keyword, createdAfter, createdBefore, filterByDsiId, filterByCompanyName, filterByCreator);
 					}],
 
 					devicesData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', 'currentUser', function($q, $rootScope, $state, $stateParams, Identify3D, currentUser){
@@ -692,7 +694,7 @@ define([
 							resolve: {
 								orderData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-									var order = _.findWhere(orders, {'order_id': orderNumber});
+									var order = _.find(orders, {'order_id': orderNumber});
 									return angular.extend({}, order);
 								}],
 								devicesData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
@@ -700,7 +702,7 @@ define([
 								}],
 								orderFormData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-									var order = _.findWhere(orders, {'order_id': orderNumber});
+									var order = _.find(orders, {'order_id': orderNumber});
 									var designId = order.dsiid;
 									return Identify3D.get3DOrderForm(designId);
 								}]

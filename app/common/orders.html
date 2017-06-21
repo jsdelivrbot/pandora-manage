@@ -8,34 +8,102 @@
 
                 <div class="panel-heading clearfix">
 
-                    <h3 class="panel-title pull-left"><i class="fa fa-1x fa-list"></i> Order Management</h3>
+                    <div class="row">
 
-                    <div class="btn-group input-group pull-right" dropdown>
-                        <button type="button" class="btn btn-primary dropdown-toggle" ng-class="{ 'btn-danger' : Lform.filterByDsiId.$invalid}" dropdown-toggle ng-disabled="orders.dsids.length === 0">
-                            {{orders.filterByDsiId === undefined ? 'Filter By DSI' : orders.filterByDsiId }} <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
+                      <div class="col-xs-6">
+                        <h3 class="panel-title pull-left"><i class="fa fa-1x fa-list"></i> Order Management</h3>
+                      </div>
 
-                            <li >
-                              <a href ng-click="orders.filterByDsiId=''; orders.filterBy()">
-                                Remove Filter
-                              </a>
-                            </li>
-                            <li role="presentation" class="divider"></li>
+                      <div class="col-xs-6">
+                        <div style="float:right; margin-left: 5px;">
+                          <div class="btn-group input-group" dropdown>
+                              <button type="button" class="btn btn-primary dropdown-toggle" ng-class="{ 'btn-danger' : Lform.filterByCompanyName.$invalid, 'btn-danger' : !!orders.filterByCompanyName }" dropdown-toggle ng-disabled="orders.allCompanies.length === 0">
+                                  {{orders.filterByCompanyName === undefined ? 'Filter By Company' : orders.filterByCompanyName }} <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
 
-                            <li ng-repeat="(key, value) in orders.dsiids">
+                                  <li >
+                                    <a href ng-click="orders.filterByCompanyName=''; orders.filterBy()">
+                                      Remove Filter
+                                    </a>
+                                  </li>
+                                  <li role="presentation" class="divider"></li>
 
-                                <a href ng-click="orders.filterByDsiId=key; orders.filterBy()">
-                                  <span class="label label-default">{{value[0].designName}}</span> <span class="badge label-default">DSI</span> {{key}}
-                                </a>
-                            </li>
-                        </ul>
-                        <input
-                          type="hidden"
-                          name="filterByDsiId"
-                          ng-model="orders.filterByDsiId"
-                        >
+                                  <li ng-repeat="(key, value) in orders.allCompanies">
+                                      <a href ng-click="orders.filterByCompanyName=key; orders.filterBy()">
+                                        {{value[0].companyName}}
+                                      </a>
+                                  </li>
+                              </ul>
+                              <input
+                                type="hidden"
+                                name="filterByCompanyName"
+                                ng-model="orders.filterByCompanyName"
+                              >
+                          </div>
+                        </div>
+                        <div style="float:right; margin-left: 5px;">
+                          <div class="btn-group input-group" dropdown>
+                              <button type="button" class="btn btn-primary dropdown-toggle" ng-class="{ 'btn-danger' : Lform.filterByCreator.$invalid, 'btn-danger' : !!orders.filterByCreator }" dropdown-toggle ng-disabled="orders.allCreators.length === 0">
+                                  {{orders.filterByCreator === undefined ? 'Filter By User' : orders.filterByCreator }} <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
+
+                                  <li >
+                                    <a href ng-click="orders.filterByCreator=''; orders.filterBy()">
+                                      Remove Filter
+                                    </a>
+                                  </li>
+                                  <li role="presentation" class="divider"></li>
+
+                                  <li ng-repeat="(key, value) in orders.allCreators">
+                                      <a href ng-click="orders.filterByCreator=key; orders.filterBy()">
+                                        {{value[0].userID}}
+                                      </a>
+                                  </li>
+                              </ul>
+                              <input
+                                type="hidden"
+                                name="filterByCreator"
+                                ng-model="orders.filterByCreator"
+                              >
+                          </div>
+                        </div>
+                        <div style="float:right; margin-left: 5px;">
+
+                          <div class="btn-group input-group" dropdown>
+                              <button type="button" class="btn btn-primary dropdown-toggle" ng-class="{ 'btn-danger' : Lform.filterByDsiId.$invalid, 'btn-danger' : !!orders.filterByDsiId }" dropdown-toggle ng-disabled="orders.dsids.length === 0">
+                                  {{orders.filterByDsiId === undefined ? 'Filter By DSI' : orders.filterByDsiId.substring(0, 8) }} <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
+
+                                  <li >
+                                    <a href ng-click="orders.filterByDsiId=''; orders.filterBy()">
+                                      Remove Filter
+                                    </a>
+                                  </li>
+                                  <li role="presentation" class="divider"></li>
+
+                                  <li ng-repeat="(key, value) in orders.dsiids">
+
+                                      <a href ng-click="orders.filterByDsiId=key; orders.filterBy()">
+                                        <span class="label label-default">{{value[0].designName}}</span> <span class="badge label-default">DSI</span> {{key}}
+                                      </a>
+                                  </li>
+                              </ul>
+                              <input
+                                type="hidden"
+                                name="filterByDsiId"
+                                ng-model="orders.filterByDsiId"
+                              >
+                          </div>
+                        </div>
+
+                      </div>
+
                     </div>
+
+
 
                 </div>
 
@@ -51,15 +119,16 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>ORDER #</th>
-                                <th>DESIGN NAME</th>
-                                <th>USER ID</th>
-                                <th>COMPANY</th>
-                                <th># ORDERED</th>
-                                <th># AUTHORIZED</th>
-                                <th>DATE CREATED</th>
+                                <th><i class="fa fa-1x" ng-class="{ 'fa-sort-numeric-asc': orders.sortBy === 'order_id' }"></i> <a ui-sref=".({sortBy: 'order_id' })">ORDER</a></th>
+                                <th>DESIGN</th>
+                                <th>DESCRIPTION</th>
+                                <th><i class="fa fa-1x" ng-class="{ 'fa-sort-alpha-asc': orders.sortBy === 'userID' }"></i> <a ui-sref=".({sortBy: 'userID' })">USER ID</a></th>
+                                <th><i class="fa fa-1x" ng-class="{ 'fa-sort-alpha-asc': orders.sortBy === 'companyName' }"></i> <a ui-sref=".({sortBy: 'companyName' })">COMPANY</a></th>
+                                <th>ORDERED</th>
+                                <th>AUTHORIZED</th>
+                                <th><i class="fa fa-1x" ng-class="{ 'fa-sort-amount-asc': orders.sortBy === 'dateCreated' }"></i> <a ui-sref=".({sortBy: 'dateCreated' })">DATE CREATED</a></th>
                                 <!-- <th>STATUS</th> -->
-                                <th>ACTION</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,12 +140,15 @@
                                 </td>
                                 <td>{{order.order_id}}</td>
                                 <td>
-                                    <a href popover-trigger="mouseenter" popover-placement="right" popover="{{order.description}}">{{order.designName}}<a/>
+                                  {{order.designName}}
+                                </td>
+                                <td>
+                                  {{order.description}}
                                 </td>
                                 <td>{{order.userID}}</td>
                                 <td>{{order.companyName}}</td>
-                                <td>{{order.licensingParameters.quantity ? order.licensingParameters.quantity : '-'}}</td>
-                                <td>{{order.quantityAuthorized ? order.quantityAuthorized : '-'}}</td>
+                                <td>{{order.licensingParameters.quantity ? order.licensingParameters.quantity : '0'}}</td>
+                                <td>{{order.quantityAuthorized ? order.quantityAuthorized : '0'}}</td>
                                 <td>{{order.dateCreated | date:'medium' }}</td>
                                 <!-- <td>
                                   <span ng-if="order.status === 'New'" class="label label-default">{{order.status}}</span>
@@ -93,18 +165,44 @@
                                   <button ui-sref=".viewReport({orderNumber: order.orderNumber})"  type="button" class="btn btn-sm btn-default">View Reports</button>
                                 </td> -->
                                 <td>
-                                  <button ng-show="order.status !== 'Cancelled'" ui-sref=".assign({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button>
                                   <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button> -->
-                                  <button ui-sref=".viewIDInfo({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID Info</button>
-                                  <a href="{{order.damUrl}}Designs/fa2a2cc6-a63f-496d-afa6-823bea2559c6.dsi" download><button type="button" class="btn btn-sm btn-default">DAM  <i class="fa fa-download"></i></button></a>
+                                  <!-- <button  type="button" class="btn btn-sm btn-default">ID Info</button> -->
+
 
                                   <!-- <button ui-sref=".?({orderNumber: order.order_id})"  type="button" class="btn btn-sm btn-default">ID Info</button> -->
+
+
+                                  <div class="btn-group input-group" dropdown>
+                                      <button type="button" class="btn btn-primary btn-sm dropdown-toggle" dropdown-toggle>
+                                          Action <span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu dropdown-menu-right" role="menu">
+
+                                        <li ng-show="order.status !== 'Cancelled'">
+                                          <a ui-sref=".assign({orderNumber: order.order_id})">Authorize</i></a>
+                                        </li>
+
+                                        <li ng-show="order.status !== 'Cancelled'" role="presentation" class="divider"></li>
+
+                                        <li >
+                                          <a ui-sref=".viewIDInfo({orderNumber: order.order_id, authNumber: order.authorization_id})">ID Info</i></a>
+                                        </li>
+
+                                        <li >
+                                          <a href="{{order.damUrl}}Designs/{{order.dsiid}}.dsi" download>DAM <i class="fa fa-download"></i></a>
+                                        </li>
+
+                                      </ul>
+
+                                  </div>
+
+
                                 </td>
                               </tr>
                               <tr ng-show="orders.authorizationSections[order.order_id] === true" ng-repeat-end>
                                 <td colspan="2">
                                 </td>
-                                <td colspan="6">
+                                <td colspan="7">
 
                                   <div ng-if="!orders.groupedAuthorizations[order.order_id]" class="alert alert-warning" role="alert">
                                       <p>No authorizations found for Order #{{order.order_id}}.</p>
@@ -130,7 +228,7 @@
                                                 <!-- {{order.licensingParameters.licensee.publicKeySN}} -->
                                                 <!-- {{order.licensingParameters.licensee.keyRoleSN}} -->
                                               </td>
-                                              <td>{{order.licensingParameters.quantity ? order.licensingParameters.quantity : '-'}}</td>
+                                              <td>{{order.licensingParameters.quantity ? order.licensingParameters.quantity : '0'}}</td>
                                               <td>{{order.dateCreated | date:'medium' }}</td>
                                               <!-- <td>
                                                 <span ng-if="order.status === 'New'" class="label label-default">{{order.status}}</span>

@@ -18,7 +18,11 @@ define([], function () {
 
     self.selectedPrinter = null;
 
+    self.minAllowedDate = new Date();
+
     var quantityOrdered = Math.max(0, orderData.licensingParameters.quantity - orderData.quantityAuthorized);
+
+    self.maxQuantityOrdered = quantityOrdered;
 
     self.orderForm = angular.extend({}, {
       DesignRules: orderFormData,

@@ -9,7 +9,12 @@ define(['lodash'], function (_) {
 
     self.dummyPromise = null;
 
+    self.sortBy = $stateParams.sortBy || 'order_id';
+
     self.filterByDsiId = $stateParams.filterByDsiId || undefined;
+    self.filterByCompanyName = $stateParams.filterByCompanyName || undefined;
+    self.filterByCreator = $stateParams.filterByCreator || undefined;
+
     self.keyword = $stateParams.keyword;
     self.createdAfter_jsdate = $stateParams.createdAfter ? new Date(parseInt($stateParams.createdAfter)) : null;
     self.createdBefore_jsdate = $stateParams.createdBefore ? new Date(parseInt($stateParams.createdBefore)) : null;
@@ -18,12 +23,33 @@ define(['lodash'], function (_) {
       return order.dsiid
     })
 
+    self.allCompanies = _.groupBy(ordersData, (order) => {
+      return order.companyName
+    })
+
+    self.allCreators = _.groupBy(ordersData, (order) => {
+      return order.userID
+    })
+
     var filteredOrders = ordersData;
     if(self.filterByDsiId) {
-      filteredOrders = _.filter(ordersData, function(order){
+      filteredOrders = _.filter(filteredOrders, function(order){
         return order.dsiid === self.filterByDsiId;
       });
     }
+    if(self.filterByCompanyName) {
+      filteredOrders = _.filter(filteredOrders, function(order){
+        return order.companyName === self.filterByCompanyName;
+      });
+    }
+    if(self.filterByCreator) {
+      filteredOrders = _.filter(filteredOrders, function(order){
+        return order.userID === self.filterByCreator;
+      });
+    }
+
+    // sort
+    filteredOrders = _.orderBy(filteredOrders, [self.sortBy], ['asc']);
 
     var orders = _.filter(filteredOrders, function(order){
       return order.authorization_id === -1;
@@ -109,7 +135,7 @@ define(['lodash'], function (_) {
       // self.myPromise = blockingUI.promise;
 
       console.log(self.filterByDsiId);
-      $state.go(".", {pageNum: 1, keyword: "", createdAfter:0, createdBefore:0, prescriptionStatus: 'created', filterByDsiId: self.filterByDsiId}, {reload: true});
+      $state.go(".", {pageNum: 1, keyword: "", createdAfter:0, createdBefore:0, prescriptionStatus: 'created', filterByDsiId: self.filterByDsiId, filterByCompanyName: self.filterByCompanyName, filterByCreator: self.filterByCreator }, {reload: true});
     }
 
     self.openAfterCal = function($event) {

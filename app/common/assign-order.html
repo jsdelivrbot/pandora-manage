@@ -1,4 +1,4 @@
-<form cg-busy="{promise:assignOrder.myPromise, message:''}" name="Lform" novalidate ng-submit="assignOrder.saveInspiration(Lform)">
+<form cg-busy="{promise:assignOrder.myPromise, message:''}" name="Lform" ng-submit="assignOrder.saveInspiration(Lform)">
 
     <div class="modal-header">
         <h3 class="modal-title">
@@ -288,7 +288,7 @@
 
                             <div class="form-group" ng-class="{ 'has-error' : Lform.quantityAuthorized.$invalid}">
                                 <label for="exampleInputEmail1">Quantity</label>
-                                <input type="number" ng-min="0" ng-max="assignOrder.maxQuantityOrdered" class="form-control" id="exampleInputEmail1" placeholder="Quantity" name="quantityAuthorized" ng-model="assignOrder.orderForm.BusinessRules.quantityAuthorized">
+                                <input type="number" min="0" max="{{assignOrder.maxQuantityOrdered}}" ng-min="0" ng-max="assignOrder.maxQuantityOrdered" class="form-control" id="exampleInputEmail1" placeholder="Quantity" name="quantityAuthorized" ng-model="assignOrder.orderForm.BusinessRules.quantityAuthorized">
                             </div>
 
                         </div>

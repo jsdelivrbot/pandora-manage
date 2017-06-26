@@ -74,7 +74,7 @@ define([], function () {
 
       if(Lform.$invalid) {
 
-        confirmationDialogService('md', 'Marked (*) fields are required.', false, true)
+        confirmationDialogService('md', 'Please correct the errors and try again.', false, true)
         .result
         .then(function (userResponse) {
         }, function (userResponse) {

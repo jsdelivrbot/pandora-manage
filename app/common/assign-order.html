@@ -295,12 +295,12 @@
 
                         <div class="col-md-6">
 
-                            <div class="form-group" ng-class="{ 'has-error' : Lform.expirationDate.$invalid}">
+                            <div class="form-group" ng-class="{ 'has-error' : Lform.undefined.$invalid}">
                                 <label for="exampleInputEmail1">Expiration Date</label>
 
                                 <p class="input-group input-group-md">
                                   <!-- ng-disabled="assignOrder.orderForm.BusinessRules.expirationDate" -->
-                                    <input  type="text" class="form-control" min-date="assignOrder.minAllowedDate" datepicker-popup="MM / dd / yyyy" datepicker-mode="year" ng-model="assignOrder.orderForm.BusinessRules.expirationDate" name="expirationDate" is-open="assignOrder.isDOBCalOpen" placeholder="Expiration Date" close-text="Close"
+                                    <input type="text" class="form-control" min-date="assignOrder.minAllowedDate" datepicker-popup="MM / dd / yyyy" datepicker-mode="year" ng-model="assignOrder.orderForm.BusinessRules.expirationDate" name="expirationDate" is-open="assignOrder.isDOBCalOpen" placeholder="Expiration Date" close-text="Close"
                                     />
                                     <span class="input-group-btn">
                                       <button type="button" class="btn btn-default" ng-click="assignOrder.openDOBCal($event)"><i class="glyphicon glyphicon-calendar"></i></button>

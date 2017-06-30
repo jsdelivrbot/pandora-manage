@@ -19,6 +19,13 @@ define([], function () {
     self.selectedPrinter = null;
 
     self.minAllowedDate = new Date();
+    self.maxAllowedDate = null;
+
+    if(orderData.licensingParameters.expirationDate) {
+      var expDate = new Date(orderData.licensingParameters.expirationDate);
+      expDate.setDate(expDate.getDate() + 1);
+      self.maxAllowedDate = expDate;
+    }
 
     var quantityOrdered;
 

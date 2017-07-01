@@ -164,7 +164,7 @@
 
               <div class="input-group input-group-md">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input ng-disabled="editUser.isEditing" autofocus ng-model="editUser.userData.user" required name="user" type="text" class="form-control input-md" placeholder="Username">
+                <input ng-pattern="/^[a-zA-Z0-9_-]{1,256}$/" ng-disabled="editUser.isEditing" autofocus ng-model="editUser.userData.user" required name="user" type="text" class="form-control input-md" placeholder="Username">
 
               </div>
               <br/>

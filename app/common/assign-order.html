@@ -317,9 +317,9 @@
 
                       <div ng-show="assignOrder.otherUser" class="col-md-12">
 
-                          <div class="form-group" ng-class="{ 'has-error' : Lform.authorizedUser.$invalid}">
+                          <div class="form-group" ng-class="{ 'has-error' : Lform.authorizedUserCustom.$invalid}">
                               <label for="exampleInputEmail1">Authorized User*</label>
-                              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Authorized User" name="authorizedUser" ng-model="assignOrder.orderForm.BusinessRules.authorizedUser">
+                              <input ng-pattern="/^[a-zA-Z0-9_-]{1,256}$/" type="text" class="form-control" id="exampleInputEmail1" placeholder="Authorized User" name="authorizedUserCustom" ng-model="assignOrder.orderForm.BusinessRules.authorizedUser">
                           </div>
 
                       </div>

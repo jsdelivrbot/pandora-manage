@@ -3,8 +3,8 @@
     <div class="modal-header">
         <h3 class="modal-title">
           Authorize Order
-          <span class="label label-primary">{{assignOrder.order.order_id}}</span>
-          <!-- <span class="label label-default">{{assignOrder.order.dsiid}}</span> -->
+          <span class="label label-primary">{{assignOrder.order.orderId}}</span>
+          <!-- <span class="label label-default">{{assignOrder.order.dsi.dsiid}}</span> -->
         </h3>
 
         <button type="button" style="position:absolute; right:20px; top:20px;" ui-sref="^" class="btn btn-md btn-primary">Cancel</button>
@@ -21,9 +21,9 @@
 
 
                     <div class="page-header">
-                        <h4><i class="fa fa-picture-o"></i> {{assignOrder.order.designName}}</h4>
+                        <h4><i class="fa fa-picture-o"></i> {{assignOrder.order.dsi.designName}}</h4>
                         <br/>
-                        {{assignOrder.order.description}}
+                        {{assignOrder.order.dsi.description}}
                     </div>
 
                     <div class="row">
@@ -270,11 +270,11 @@
 
                                 <div class="btn-group input-group" dropdown>
                                     <button type="button" class="btn btn-default dropdown-toggle" ng-class="{ 'btn-danger' : Lform.selectedPrinter.$invalid}" dropdown-toggle ng-disabled="false">
-                                        {{assignOrder.selectedPrinter ? assignOrder.selectedPrinter.manufacturingParameters.deviceName: 'Select Device' }} <span class="caret"></span>
+                                        {{assignOrder.selectedPrinter ? assignOrder.selectedPrinter.deviceName: 'Select Device' }} <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li ng-repeat="printer in assignOrder.printers">
-                                            <a href ng-click="assignOrder.selectedPrinter=printer; assignOrder.orderForm.BusinessRules.authorizedUser=null;"><span class="label label-default">{{printer.manufacturingParameters.family}}</span> <span class="label label-info">{{printer.manufacturingParameters.machineType}}</span> {{printer.manufacturingParameters.deviceName}}</a>
+                                            <a href ng-click="assignOrder.selectedPrinter=printer; assignOrder.orderForm.BusinessRules.authorizedUser=null;"><span class="label label-default">{{printer.family}}</span> <span class="label label-info">{{printer.machineType}}</span> {{printer.deviceName}}</a>
                                         </li>
 
                                     </ul>
@@ -335,7 +335,7 @@
                                       {{assignOrder.orderForm.BusinessRules.authorizedUser ? assignOrder.orderForm.BusinessRules.authorizedUser : 'Select User' }} <span class="caret"></span>
                                   </button>
                                   <ul class="dropdown-menu" role="menu">
-                                      <li ng-repeat="user in assignOrder.selectedPrinter.users">
+                                      <li ng-repeat="user in assignOrder.selectedPrinter.enforceUserList">
                                           <a href ng-click="assignOrder.orderForm.BusinessRules.authorizedUser=user">{{user}}</a>
                                       </li>
                                       <li role="presentation" class="divider"></li>

@@ -9,7 +9,7 @@ define(['lodash'], function (_) {
 
     self.dummyPromise = null;
 
-    self.sortBy = $stateParams.sortBy || 'order_id';
+    self.sortBy = $stateParams.sortBy || 'orderId';
 
     self.filterByDsiId = $stateParams.filterByDsiId || undefined;
     self.filterByCompanyName = $stateParams.filterByCompanyName || undefined;
@@ -20,31 +20,31 @@ define(['lodash'], function (_) {
     self.createdBefore_jsdate = $stateParams.createdBefore ? new Date(parseInt($stateParams.createdBefore)) : null;
 
     self.dsiids = _.groupBy(ordersData, (order) => {
-      return order.dsiid
+      return order.dsi.dsiid
     })
 
     self.allCompanies = _.groupBy(ordersData, (order) => {
-      return order.companyName
+      return order.cryptoCerts.companyName
     })
 
     self.allCreators = _.groupBy(ordersData, (order) => {
-      return order.userID
+      return order.dsi.userID
     })
 
     var filteredOrders = ordersData;
     if(self.filterByDsiId) {
       filteredOrders = _.filter(filteredOrders, function(order){
-        return order.dsiid === self.filterByDsiId;
+        return order.dsi.dsiid === self.filterByDsiId;
       });
     }
     if(self.filterByCompanyName) {
       filteredOrders = _.filter(filteredOrders, function(order){
-        return order.companyName === self.filterByCompanyName;
+        return order.cryptoCerts.companyName === self.filterByCompanyName;
       });
     }
     if(self.filterByCreator) {
       filteredOrders = _.filter(filteredOrders, function(order){
-        return order.userID === self.filterByCreator;
+        return order.dsi.userID === self.filterByCreator;
       });
     }
 
@@ -52,16 +52,16 @@ define(['lodash'], function (_) {
     filteredOrders = _.orderBy(filteredOrders, [self.sortBy], ['asc']);
 
     var orders = _.filter(filteredOrders, function(order){
-      return order.authorization_id === -1;
+      return order.authorizationId === -1;
     });
 
     var authorizations = _.filter(filteredOrders, function(order){
-      return order.authorization_id !== -1;
+      return order.authorizationId !== -1;
     });
 
 
     var groupedAuthorizations = _.groupBy(authorizations, function(authorizationRecord){
-      return authorizationRecord.order_id;
+      return authorizationRecord.orderId;
     });
 
     console.log(groupedAuthorizations)

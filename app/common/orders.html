@@ -31,7 +31,7 @@
 
                                   <li ng-repeat="(key, value) in orders.allCompanies">
                                       <a href ng-click="orders.filterByCompanyName=key; orders.filterBy()">
-                                        {{value[0].companyName}}
+                                        {{value[0].cryptoCerts.companyName}}
                                       </a>
                                   </li>
                               </ul>
@@ -58,7 +58,7 @@
 
                                   <li ng-repeat="(key, value) in orders.allCreators">
                                       <a href ng-click="orders.filterByCreator=key; orders.filterBy()">
-                                        {{value[0].userID}}
+                                        {{value[0].dsi.userID}}
                                       </a>
                                   </li>
                               </ul>
@@ -119,7 +119,7 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th><i class="fa fa-1x" ng-class="{ 'fa-sort-numeric-asc': orders.sortBy === 'order_id' }"></i> <a ui-sref=".({sortBy: 'order_id' })">ORDER</a></th>
+                                <th><i class="fa fa-1x" ng-class="{ 'fa-sort-numeric-asc': orders.sortBy === 'orderId' }"></i> <a ui-sref=".({sortBy: 'orderId' })">ORDER</a></th>
                                 <th>DESIGN</th>
                                 <th>DESCRIPTION</th>
                                 <th><i class="fa fa-1x" ng-class="{ 'fa-sort-alpha-asc': orders.sortBy === 'userID' }"></i> <a ui-sref=".({sortBy: 'userID' })">USER ID</a></th>
@@ -135,19 +135,19 @@
 
                             <tr ng-repeat-start="order in orders.orders">
                                 <td>
-                                  <button ng-show="!orders.authorizationSections[order.order_id]" ng-click="orders.authorizationSections[order.order_id] = true" type="button" class="btn btn-sm btn-primary">+</button>
-                                  <button ng-show="orders.authorizationSections[order.order_id] === true" ng-click="orders.authorizationSections[order.order_id] = false" type="button" class="btn btn-sm btn-primary">-</button>
+                                  <button ng-show="!orders.authorizationSections[order.orderId]" ng-click="orders.authorizationSections[order.orderId] = true" type="button" class="btn btn-sm btn-primary">+</button>
+                                  <button ng-show="orders.authorizationSections[order.orderId] === true" ng-click="orders.authorizationSections[order.orderId] = false" type="button" class="btn btn-sm btn-primary">-</button>
                                 </td>
-                                <td>{{order.order_id}}</td>
+                                <td>{{order.orderId}}</td>
                                 <td>
-                                  {{order.designName}}
+                                  {{order.dsi.designName}}
                                 </td>
                                 <td>
-                                  {{order.description}}
+                                  {{order.dsi.description}}
                                 </td>
-                                <td>{{order.userID}}</td>
-                                <td>{{order.companyName}}</td>
-                                <td>{{order.licensingParameters.quantity !== null ? order.licensingParameters.quantity : ''}}</td>
+                                <td>{{order.dsi.userID}}</td>
+                                <td>{{order.cryptoCerts.companyName}}</td>
+                                <td>{{order.quantity !== null ? order.quantity : ''}}</td>
                                 <td>{{order.quantityAuthorized !== null ? order.quantityAuthorized : ''}}</td>
                                 <td>{{order.dateCreated | date:'medium' }}</td>
                                 <!-- <td>
@@ -165,11 +165,11 @@
                                   <button ui-sref=".viewReport({orderNumber: order.orderNumber})"  type="button" class="btn btn-sm btn-default">View Reports</button>
                                 </td> -->
                                 <td>
-                                  <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-primary">Authorize</button> -->
+                                  <!-- <button ui-sref=".?({orderNumber: order.orderId})" type="button" class="btn btn-sm btn-primary">Authorize</button> -->
                                   <!-- <button  type="button" class="btn btn-sm btn-default">ID Info</button> -->
 
 
-                                  <!-- <button ui-sref=".?({orderNumber: order.order_id})"  type="button" class="btn btn-sm btn-default">ID Info</button> -->
+                                  <!-- <button ui-sref=".?({orderNumber: order.orderId})"  type="button" class="btn btn-sm btn-default">ID Info</button> -->
 
 
                                   <div class="btn-group input-group" dropdown>
@@ -179,17 +179,17 @@
                                       <ul class="dropdown-menu dropdown-menu-right" role="menu">
 
                                         <li ng-show="order.status !== 'Cancelled'">
-                                          <a ui-sref=".assign({orderNumber: order.order_id})">Authorize</i></a>
+                                          <a ui-sref=".assign({orderNumber: order.orderId})">Authorize</i></a>
                                         </li>
 
                                         <li ng-show="order.status !== 'Cancelled'" role="presentation" class="divider"></li>
 
                                         <li >
-                                          <a ui-sref=".viewIDInfo({orderNumber: order.order_id, authNumber: order.authorization_id})">ID Info</i></a>
+                                          <a ui-sref=".viewIDInfo({orderNumber: order.orderId, authNumber: order.authorizationId})">ID Info</i></a>
                                         </li>
 
                                         <li >
-                                          <a href="{{order.damUrl}}Designs/{{order.dsiid}}.dsi" download>DAM <i class="fa fa-download"></i></a>
+                                          <a href="{{order.damUrl}}Designs/{{order.dsi.dsiid}}.dsi" download>DAM <i class="fa fa-download"></i></a>
                                         </li>
 
                                       </ul>
@@ -199,16 +199,16 @@
 
                                 </td>
                               </tr>
-                              <tr ng-show="orders.authorizationSections[order.order_id] === true" ng-repeat-end>
+                              <tr ng-show="orders.authorizationSections[order.orderId] === true" ng-repeat-end>
                                 <td colspan="2">
                                 </td>
                                 <td colspan="7">
 
-                                  <div ng-if="!orders.groupedAuthorizations[order.order_id]" class="alert alert-warning" role="alert">
-                                      <p>No authorizations found for Order #{{order.order_id}}.</p>
+                                  <div ng-if="!orders.groupedAuthorizations[order.orderId]" class="alert alert-warning" role="alert">
+                                      <p>No authorizations found for Order #{{order.orderId}}.</p>
                                   </div>
 
-                                  <table ng-if="orders.groupedAuthorizations[order.order_id].length > 0" fixed-table-headers class="table table-bordered table-striped">
+                                  <table ng-if="orders.groupedAuthorizations[order.orderId].length > 0" fixed-table-headers class="table table-bordered table-striped">
                                       <thead>
                                           <tr>
                                               <th>AUTHORIZATION #</th>
@@ -221,14 +221,14 @@
                                       </thead>
                                       <tbody>
 
-                                          <tr ng-repeat="order in orders.groupedAuthorizations[order.order_id]">
-                                              <td>{{order.authorization_id}}</td>
+                                          <tr ng-repeat="order in orders.groupedAuthorizations[order.orderId]">
+                                              <td>{{order.authorizationId}}</td>
                                               <td>
-                                                {{order.licensingParameters.licensee.companyName}}
-                                                <!-- {{order.licensingParameters.licensee.publicKeySN}} -->
-                                                <!-- {{order.licensingParameters.licensee.keyRoleSN}} -->
+                                                {{order.cryptoCerts.companyName}}
+                                                <!-- {{order.cryptoCerts.publicKeySN}} -->
+                                                <!-- {{order.cryptoCerts.keyRoleSN}} -->
                                               </td>
-                                              <td>{{order.licensingParameters.quantity ? order.licensingParameters.quantity : '0'}}</td>
+                                              <td>{{order.quantity ? order.quantity : '0'}}</td>
                                               <td>{{order.dateCreated | date:'medium' }}</td>
                                               <!-- <td>
                                                 <span ng-if="order.status === 'New'" class="label label-default">{{order.status}}</span>
@@ -245,8 +245,8 @@
                                                 <button ui-sref=".viewReport({orderNumber: order.orderNumber})"  type="button" class="btn btn-sm btn-default">View Reports</button>
                                               </td> -->
                                               <td>
-                                                <!-- <button ui-sref=".?({orderNumber: order.order_id})" type="button" class="btn btn-sm btn-default">ID3 Trace</button> -->
-                                                <button ui-sref=".viewReport({orderNumber: order.order_id, authNumber: order.authorization_id})"  type="button" class="btn btn-sm btn-default">ID3 Trace</button>
+                                                <!-- <button ui-sref=".?({orderNumber: order.orderId})" type="button" class="btn btn-sm btn-default">ID3 Trace</button> -->
+                                                <button ui-sref=".viewReport({orderNumber: order.orderId, authNumber: order.authorizationId})"  type="button" class="btn btn-sm btn-default">ID3 Trace</button>
 
                                               </td>
                                             </tr>

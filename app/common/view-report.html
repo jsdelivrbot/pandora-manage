@@ -1,7 +1,7 @@
 <form cg-busy="{promise:viewReport.myPromise, message:''}" name="Lform" novalidate ng-submit="viewReport.submitForm(Lform)">
 
     <div class="modal-header">
-        <h3 class="modal-title">ID3 Trace <span class="badge">{{viewReport.orderData.order_id}}</span></h3>
+        <h3 class="modal-title">ID3 Trace <span class="badge">{{viewReport.orderData.orderId}}</span></h3>
 
         <button style="position:absolute; right:20px; top:20px;" ui-sref="^" class="btn btn-md btn-primary">Done</button>
 
@@ -20,12 +20,12 @@
                           <tbody>
                               <tr>
                                  <td>Order #</td>
-                                 <td>{{viewReport.orderData.order_id}}</td>
+                                 <td>{{viewReport.orderData.orderId}}</td>
                               </tr>
 
                               <tr>
                                  <td>AUTHORIZATION #</td>
-                                 <td>{{viewReport.orderData.authorization_id}}</td>
+                                 <td>{{viewReport.orderData.authorizationId}}</td>
                               </tr>
 
                           </tbody>

@@ -462,7 +462,7 @@ define([
 								deviceData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
 									var device = _.find(devices, function(device) {
-										return device.manufacturingParameters.deviceID === deviceId;
+										return device.deviceID === deviceId;
 									});
 
 									return angular.extend({}, device);
@@ -505,7 +505,7 @@ define([
 							resolve: {
 								orderData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-                  var order = _.find(orders, {'order_id': parseInt(orderNumber, 10), authorization_id: parseInt(authNumber, 10)});
+                  var order = _.find(orders, {'orderId': parseInt(orderNumber, 10), authorizationId: parseInt(authNumber, 10)});
 
 									return angular.extend({}, order);
 								}],
@@ -546,9 +546,9 @@ define([
 							resolve: {
 								orderData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-									var order = _.find(orders, {'order_id': parseInt(orderNumber, 10), authorization_id: parseInt(authNumber, 10)});
+									var order = _.find(orders, {'orderId': parseInt(orderNumber, 10), authorizationId: parseInt(authNumber, 10)});
 
-									// var order = _.find(orders, {'order_id': orderNumber, authorization_id: authNumber});
+									// var order = _.find(orders, {'orderId': orderNumber, authorizationId: authNumber});
 
 									return angular.extend({}, order);
 								}],
@@ -694,7 +694,7 @@ define([
 							resolve: {
 								orderData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-									var order = _.find(orders, {'order_id': orderNumber});
+									var order = _.find(orders, {'orderId': orderNumber});
 									return angular.extend({}, order);
 								}],
 								devicesData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
@@ -702,8 +702,8 @@ define([
 								}],
 								orderFormData: ['$q', '$rootScope', '$state', '$stateParams', 'Identify3DObject', function($q, $rootScope, $state, $stateParams, Identify3D){
 
-									var order = _.find(orders, {'order_id': orderNumber});
-									var designId = order.dsiid;
+									var order = _.find(orders, {'orderId': orderNumber});
+									var designId = order.dsi.dsiid;
 									return Identify3D.get3DOrderForm(designId);
 								}]
 							}

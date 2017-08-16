@@ -14,23 +14,23 @@ define([], function () {
     self.order = angular.extend({}, orderData);
     self.printers = devicesData;
 
-    console.log(self.order)
+    console.log(self.printers)
 
     self.selectedPrinter = null;
 
     self.minAllowedDate = new Date();
     self.maxAllowedDate = null;
 
-    if(orderData.licensingParameters.expirationDate) {
-      var expDate = new Date(orderData.licensingParameters.expirationDate);
+    if(orderData.expirationDate) {
+      var expDate = new Date(orderData.expirationDate);
       expDate.setDate(expDate.getDate() + 1);
       self.maxAllowedDate = expDate;
     }
 
     var quantityOrdered;
 
-    if(orderData.licensingParameters.quantity !== null) {
-      quantityOrdered = Math.max(0, orderData.licensingParameters.quantity - orderData.quantityAuthorized);
+    if(orderData.quantity !== null) {
+      quantityOrdered = Math.max(0, orderData.quantity - orderData.quantityAuthorized);
     }
 
     self.maxQuantityOrdered = quantityOrdered;
@@ -39,7 +39,7 @@ define([], function () {
       DesignRules: orderFormData,
       BusinessRules: {
           quantityAuthorized: quantityOrdered,
-          expirationDate: orderData.licensingParameters.expirationDate,
+          expirationDate: orderData.expirationDate,
       }
     });
 
@@ -98,7 +98,7 @@ define([], function () {
         $state.go("^", $stateParams, {reload: true});
       }
 
-      var serverResponse = Identify3D.doBureauSubmitJob(self.order.designId, self.selectedPrinter.manufacturingParameters.deviceID, self.selectedPrinter.url, self.orderForm, self.order.order_id)
+      var serverResponse = Identify3D.doBureauSubmitJob(self.order.designId, self.selectedPrinter.deviceID, self.selectedPrinter.url, self.orderForm, self.order.orderId)
       // .then(function(user){
       //
       //   unblockAndNavigateToParentWithReload();
@@ -190,7 +190,7 @@ define([], function () {
         $state.go("^", $stateParams, {reload: true});
       }
 
-      var serverResponse = Identify3D.doBureauSaveJob(self.order.designId, self.selectedPrinter.manufacturingParameters.deviceID, self.selectedPrinter.url, self.orderForm, self.order.order_id)
+      var serverResponse = Identify3D.doBureauSaveJob(self.order.designId, self.selectedPrinter.deviceID, self.selectedPrinter.url, self.orderForm, self.order.orderId)
       // .then(function(fileData){
       //
       //   // console.log(self.orderForm)

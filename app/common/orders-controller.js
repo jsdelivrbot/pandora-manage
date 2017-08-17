@@ -24,7 +24,7 @@ define(['lodash'], function (_) {
     })
 
     self.allCompanies = _.groupBy(ordersData, (order) => {
-      return order.cryptoCerts.companyName
+      return order.protectCryptoCerts.companyName
     })
 
     self.allCreators = _.groupBy(ordersData, (order) => {
@@ -39,7 +39,7 @@ define(['lodash'], function (_) {
     }
     if(self.filterByCompanyName) {
       filteredOrders = _.filter(filteredOrders, function(order){
-        return order.cryptoCerts.companyName === self.filterByCompanyName;
+        return order.protectCryptoCerts.companyName === self.filterByCompanyName;
       });
     }
     if(self.filterByCreator) {

@@ -31,7 +31,7 @@
 
                                   <li ng-repeat="(key, value) in orders.allCompanies">
                                       <a href ng-click="orders.filterByCompanyName=key; orders.filterBy()">
-                                        {{value[0].cryptoCerts.companyName}}
+                                        {{value[0].protectCryptoCerts.companyName}}
                                       </a>
                                   </li>
                               </ul>
@@ -146,7 +146,7 @@
                                   {{order.dsi.description}}
                                 </td>
                                 <td>{{order.dsi.userID}}</td>
-                                <td>{{order.cryptoCerts.companyName}}</td>
+                                <td>{{order.protectCryptoCerts.companyName}}</td>
                                 <td>{{order.quantity !== null ? order.quantity : ''}}</td>
                                 <td>{{order.quantityAuthorized !== null ? order.quantityAuthorized : ''}}</td>
                                 <td>{{order.dateCreated | date:'medium' }}</td>
@@ -224,9 +224,9 @@
                                           <tr ng-repeat="order in orders.groupedAuthorizations[order.orderId]">
                                               <td>{{order.authorizationId}}</td>
                                               <td>
-                                                {{order.cryptoCerts.companyName}}
-                                                <!-- {{order.cryptoCerts.publicKeySN}} -->
-                                                <!-- {{order.cryptoCerts.keyRoleSN}} -->
+                                                {{order.protectCryptoCerts.companyName}}
+                                                <!-- {{order.protectCryptoCerts.publicKeySN}} -->
+                                                <!-- {{order.protectCryptoCerts.keyRoleSN}} -->
                                               </td>
                                               <td>{{order.quantity ? order.quantity : '0'}}</td>
                                               <td>{{order.dateCreated | date:'medium' }}</td>

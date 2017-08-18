@@ -148,7 +148,7 @@
                                 <td>{{order.dsi.userID}}</td>
                                 <td>{{order.protectCryptoCerts.companyName}}</td>
                                 <td>{{order.quantity !== null ? order.quantity : ''}}</td>
-                                <td>{{order.quantityAuthorized !== null ? order.quantityAuthorized : ''}}</td>
+                                <td>{{order.expiredQuantity !== null ? order.expiredQuantity : ''}}</td>
                                 <td>{{order.dateCreated | date:'medium' }}</td>
                                 <!-- <td>
                                   <span ng-if="order.status === 'New'" class="label label-default">{{order.status}}</span>

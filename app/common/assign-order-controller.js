@@ -30,7 +30,7 @@ define([], function () {
     var quantityOrdered;
 
     if(orderData.quantity !== null) {
-      quantityOrdered = Math.max(0, orderData.quantity - orderData.quantityAuthorized);
+      quantityOrdered = Math.max(0, orderData.quantity - orderData.expiredQuantity);
     }
 
     self.maxQuantityOrdered = quantityOrdered;

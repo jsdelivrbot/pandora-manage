@@ -38,7 +38,7 @@ define([], function () {
     self.orderForm = angular.extend({}, {
       DesignRules: orderFormData,
       BusinessRules: {
-          quantityAuthorized: quantityOrdered,
+          expiredQuantity: quantityOrdered,
           expirationDate: orderData.expirationDate,
       }
     });

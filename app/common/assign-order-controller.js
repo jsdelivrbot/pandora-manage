@@ -1,7 +1,7 @@
 /*global define*/
 'use strict';
 
-define([], function () {
+define(['lodash'], function (_) {
 
   function AssignOrderController($window, $q, $scope, $rootScope, $stateParams, $state, $modal, $aside, $modalInstance, Identify3D, orderData, devicesData, confirmationDialogService, orderFormData){
 
@@ -12,6 +12,18 @@ define([], function () {
     $scope.copy = angular.copy;
 
     self.order = angular.extend({}, orderData);
+
+    self.order.DesignRules = {
+      "Build Parameters": _.map(self.order.buildParameters, function(field) {
+        field.isEditable = true;
+        field.isRequired = true;
+
+        return field;
+      }),
+    }
+
+    console.log("DesignRules", self.order.DesignRules)
+
     self.printers = devicesData;
 
     console.log(self.printers)

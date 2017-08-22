@@ -354,7 +354,7 @@
 
                     <!--  -->
 
-                    <span ng-repeat="(key, arr) in assignOrder.orderForm.DesignRules" ng-if="isArray(arr) && arr.length > 0">
+                    <span ng-repeat="(key, arr) in assignOrder.order.DesignRules" ng-if="isArray(arr) && arr.length > 0">
 
 
                       <div
@@ -427,7 +427,7 @@ DEBUG:
 </div> -->
 
                         <div
-                          ng-if="dynamicField.dataType === 'boolean'"
+                          ng-if="dynamicField.type === 'boolean'"
                           class="col-md-10"
                         >
 
@@ -466,7 +466,7 @@ DEBUG:
                         -->
 
                         <div
-                          ng-if="dynamicField.dataType !== 'boolean' && !dynamicField._value.choice"
+                          ng-if="dynamicField.type !== 'boolean' && !dynamicField._value.choice"
                           class="col-md-12"
                         >
 
@@ -573,7 +573,7 @@ DEBUG:
                                 <!-- UNDEFINED VALUE -->
 
                                 <span
-                                  ng-if="dynamicField._fieldType === 'VALUE' && (!dynamicField._value.value || dynamicField.dataType === 'string')"
+                                  ng-if="dynamicField._fieldType === 'VALUE' && (!dynamicField._value.value || dynamicField.type === 'String')"
                                 >
 
                                   <div class="col-md-4">
@@ -582,7 +582,7 @@ DEBUG:
                                               Value{{dynamicField.isRequired ? "*" : ""}}
                                           </label>
                                           <input
-                                            ng-if="dynamicField.dataType !== 'integer'"
+                                            ng-if="dynamicField.type !== 'integer'"
                                             type="text"
                                             class="form-control"
                                             id="exampleInputEmail1"
@@ -593,7 +593,7 @@ DEBUG:
                                             ng-disabled="!dynamicField.isEditable"
                                           >
                                           <input
-                                            ng-if="dynamicField.dataType === 'integer'"
+                                            ng-if="dynamicField.type === 'integer'"
                                             type="number"
                                             class="form-control"
                                             id="exampleInputEmail1"
@@ -609,7 +609,7 @@ DEBUG:
 
                                 <!-- PREDEFINED VALUE (range) -->
                                 <span
-                                  ng-if="dynamicField.dataType !== 'string' && dynamicField.value.$range && dynamicField._fieldType === 'VALUE' && dynamicField._value.value"
+                                  ng-if="dynamicField.type !== 'String' && dynamicField.value.$range && dynamicField._fieldType === 'VALUE' && dynamicField._value.value"
                                 >
                                   <div class="col-md-9">
 
@@ -624,7 +624,7 @@ DEBUG:
 
                                 <!-- PREDEFINED VALUE (single value) -->
                                 <span
-                                  ng-if="dynamicField.dataType !== 'string' && !dynamicField.value.$range && dynamicField._fieldType === 'VALUE' && dynamicField._value.value"
+                                  ng-if="dynamicField.type !== 'String' && !dynamicField.value.$range && dynamicField._fieldType === 'VALUE' && dynamicField._value.value"
                                 >
                                 <div class="col-md-4">
                                     <div class="form-group" ng-class="{ 'has-error' : Lform.{{key+$index}}.$invalid}">
